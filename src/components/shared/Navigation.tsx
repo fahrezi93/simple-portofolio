@@ -15,8 +15,10 @@ export function Navigation() {
   }, []);
 
   const toggleTheme = () => {
+    const isDark = theme === "dark";
+    const newTheme = isDark ? "light" : "dark";
+
     const switchTheme = () => {
-      const newTheme = theme === "dark" ? "light" : "dark";
       setTheme(newTheme);
       if (newTheme === "dark") {
         document.documentElement.classList.add("dark");
@@ -29,9 +31,10 @@ export function Navigation() {
 
     if (!document.startViewTransition) {
       switchTheme();
-    } else {
-      document.startViewTransition(switchTheme);
+      return;
     }
+
+    document.startViewTransition(switchTheme);
   };
 
   useEffect(() => {
@@ -80,7 +83,7 @@ export function Navigation() {
               onClick={toggleTheme}
               aria-label="Toggle theme"
             >
-              {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
           </div>
         </div>
