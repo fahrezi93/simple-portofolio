@@ -1,0 +1,42 @@
+---
+import { programmingSkills, creativeSkills } from "../../data/skills";
+---
+
+<section id="tech-stack" class="space-y-8 scroll-mt-24">
+  <div class="space-y-2">
+    <h2 class="text-3xl font-bold tracking-tight">Tech Stack</h2>
+    <p class="text-muted-foreground">The tools and technologies I use to build digital experiences.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="space-y-4">
+      <h3 class="text-lg font-semibold">Development & Programming</h3>
+      <div class="flex flex-wrap gap-3">
+        {programmingSkills.map((skill) => {
+          const Icon = skill.iconComponent;
+          return (
+            <div class="flex items-center gap-2 px-3 py-2 rounded-lg border border-border bg-card/50 hover:bg-card hover:border-primary/50 transition-colors">
+              <Icon className="w-4 h-4" />
+              <span class="text-sm font-medium">{skill.name}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <h3 class="text-lg font-semibold">Design & Creative</h3>
+      <div class="flex flex-wrap gap-3">
+        {creativeSkills.map((skill) => {
+          const Icon = skill.iconComponent;
+          return (
+            <div class="flex items-center gap-2 px-3 py-2 rounded-lg border border-border bg-card/50 hover:bg-card hover:border-primary/50 transition-colors">
+              <Icon className="w-4 h-4" />
+              <span class="text-sm font-medium">{skill.name}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>

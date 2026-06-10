@@ -1,0 +1,57 @@
+---
+import { profile } from "../../data/profile";
+import { FluidGradientText } from "../ui/fluid-gradient-text";
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaDiscord } from "react-icons/fa";
+import { Mail } from "lucide-react";
+---
+
+<footer class="text-center text-sm text-muted-foreground overflow-hidden">
+  
+  <div class="py-12 border-y border-line flex flex-col items-center justify-center space-y-8 bg-muted/10">
+    <p class="font-mono text-xs">
+      Built with care by <span class="text-foreground font-semibold">{profile.name.split(' ')[1] || profile.name}</span>.
+    </p>
+
+    <div class="flex items-center border border-line rounded-lg overflow-hidden bg-background">
+      <a href={profile.github} target="_blank" rel="noreferrer" class="p-4 hover:bg-muted hover:text-foreground transition-colors border-r border-line">
+        <FaGithub className="size-5" />
+        <span class="sr-only">GitHub</span>
+      </a>
+      <a href={profile.linkedin} target="_blank" rel="noreferrer" class="p-4 hover:bg-muted hover:text-foreground transition-colors border-r border-line">
+        <FaLinkedin className="size-5" />
+        <span class="sr-only">LinkedIn</span>
+      </a>
+      {profile.instagram && (
+        <a href={profile.instagram} target="_blank" rel="noreferrer" class="p-4 hover:bg-muted hover:text-foreground transition-colors border-r border-line">
+          <FaInstagram className="size-5" />
+          <span class="sr-only">Instagram</span>
+        </a>
+      )}
+      {profile.discord && (
+        <a href={profile.discord} target="_blank" rel="noreferrer" class="p-4 hover:bg-muted hover:text-foreground transition-colors border-r border-line">
+          <FaDiscord className="size-5" />
+          <span class="sr-only">Discord</span>
+        </a>
+      )}
+      {profile.twitter && (
+        <a href={profile.twitter} target="_blank" rel="noreferrer" class="p-4 hover:bg-muted hover:text-foreground transition-colors border-r border-line">
+          <FaTwitter className="size-5" />
+          <span class="sr-only">Twitter</span>
+        </a>
+      )}
+      <a href={`mailto:${profile.email}`} class="p-4 hover:bg-muted hover:text-foreground transition-colors">
+        <Mail className="size-5" />
+        <span class="sr-only">Email</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="relative w-full text-foreground bg-background">
+    <FluidGradientText 
+      client:load 
+      text="fahrezi" 
+      svgViewBoxWidth={1060} 
+      svgViewBoxHeight={300} 
+    />
+  </div>
+</footer>

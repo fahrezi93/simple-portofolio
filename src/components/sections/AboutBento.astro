@@ -1,0 +1,18 @@
+---
+import { profile } from "../../data/profile";
+---
+
+<div class="screen-line-top screen-line-bottom overflow-y-clip border-x border-y border-line">
+  <div class="p-6 sm:p-8">
+    <h2 class="text-2xl font-semibold tracking-tight mb-6">Hello</h2>
+    
+    <ul class="space-y-4 text-muted-foreground leading-relaxed list-none">
+      <li class="relative step pl-10 before:absolute before:left-0 before:top-0.5 before:flex before:size-6 before:items-center before:justify-center before:rounded-lg before:bg-muted before:text-[0.8125rem] before:font-medium before:text-foreground before:content-[counter(step)]" style="counter-increment: step;">
+        I'm {profile.name} — a {profile.role} based in {profile.location}. I specialize in crafting immersive digital experiences with modern web technologies.
+      </li>
+      <li class="relative step pl-10 before:absolute before:left-0 before:top-0.5 before:flex before:size-6 before:items-center before:justify-center before:rounded-lg before:bg-muted before:text-[0.8125rem] before:font-medium before:text-foreground before:content-[counter(step)]" style="counter-increment: step;">
+        {profile.bio}
+      </li>
+    </ul>
+  </div>
+</div>

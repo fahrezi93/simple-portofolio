@@ -1,0 +1,98 @@
+---
+import { certifications } from "../../data/certifications";
+import { ExternalLink, ChevronDown } from "lucide-react";
+
+const INITIAL_COUNT = 4;
+---
+
+<section id="certifications" class="screen-line-top screen-line-bottom overflow-y-clip border-x border-y border-line scroll-mt-24">
+  <div class="p-6 sm:p-8 border-b border-line screen-line-bottom flex justify-between items-center">
+    <h2 class="text-2xl font-semibold tracking-tight">Certifications & Licenses</h2>
+    <span class="text-sm font-medium text-muted-foreground bg-muted/50 px-3 py-1 rounded-full border border-line">
+      {certifications.length} Credentials
+    </span>
+  </div>
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2" id="cert-grid">
+    {certifications.map((cert, index) => (
+      <div 
+        class={`cert-item group flex flex-col justify-between p-6 sm:p-8 hover:bg-muted/30 transition-colors border-b border-line screen-line-bottom ${
+          index % 2 !== 0 ? 'sm:border-l' : ''
+        } ${index >= INITIAL_COUNT ? 'hidden' : ''}`}
+      >
+        <div>
+          <h3 class="font-medium text-lg tracking-tight mb-2 leading-tight">{cert.title}</h3>
+          <p class="text-muted-foreground text-sm mb-6">{cert.issuer}</p>
+        </div>
+        
+        <div class="mt-auto flex items-center justify-between">
+          <p class="text-xs text-muted-foreground font-mono">{cert.date}</p>
+          <a 
+            href={cert.credentialUrl} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 text-xs font-medium text-foreground bg-background hover:bg-muted px-3 py-1.5 rounded-md border border-line transition-colors"
+          >
+            <span>Show Credential</span>
+            <ExternalLink className="size-3" />
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {certifications.length > INITIAL_COUNT && (
+    <div class="p-4 flex justify-center bg-muted/10">
+      <button 
+        id="toggle-certs-btn"
+        class="inline-flex items-center gap-2 px-6 py-2 text-sm font-medium text-muted-foreground hover:text-foreground bg-background hover:bg-muted rounded-full border border-line transition-all hover:shadow-sm"
+      >
+        <span id="toggle-certs-text">Show all {certifications.length} credentials</span>
+        <ChevronDown id="toggle-certs-icon" className="size-4 transition-transform duration-300" />
+      </button>
+    </div>
+  )}
+
+  <script>
+    function setupCertToggle() {
+      const btn = document.getElementById('toggle-certs-btn');
+      const text = document.getElementById('toggle-certs-text');
+      const icon = document.getElementById('toggle-certs-icon');
+      // Store all items that were initially hidden
+      const items = Array.from(document.querySelectorAll('.cert-item')).slice(4);
+      let isExpanded = false;
+      const totalCerts = document.querySelectorAll('.cert-item').length;
+
+      if (btn) {
+        // Clone button to remove old event listeners across view transitions
+        const newBtn = btn.cloneNode(true) as HTMLElement;
+        btn.parentNode?.replaceChild(newBtn, btn);
+        
+        const newText = document.getElementById('toggle-certs-text');
+        const newIcon = document.getElementById('toggle-certs-icon');
+
+        newBtn.addEventListener('click', () => {
+          isExpanded = !isExpanded;
+          
+          items.forEach(item => {
+            if (isExpanded) {
+              item.classList.remove('hidden');
+              item.classList.add('animate-fade-in-up');
+            } else {
+              item.classList.add('hidden');
+              item.classList.remove('animate-fade-in-up');
+            }
+          });
+
+          if (newText && newIcon) {
+            newText.textContent = isExpanded ? 'Show less' : `Show all ${totalCerts} credentials`;
+            newIcon.style.transform = isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+          }
+        });
+      }
+    }
+
+    setupCertToggle();
+    document.addEventListener('astro:page-load', setupCertToggle);
+  </script>
+</section>

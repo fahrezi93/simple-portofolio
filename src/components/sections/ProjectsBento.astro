@@ -1,0 +1,94 @@
+---
+import { ProjectsService } from "../../lib/projects-service";
+import { ExternalLink } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
+import { ProjectModal } from "../ui/ProjectModal";
+
+const { data: dbProjects, success } = await ProjectsService.getFeaturedProjects('development');
+const projects = success && dbProjects ? dbProjects : [];
+---
+
+<div class="screen-line-top screen-line-bottom overflow-y-clip border-x border-y border-line">
+  <div class="p-6 sm:p-8 border-b border-line screen-line-bottom">
+    <h2 class="text-2xl font-semibold tracking-tight">Selected Projects</h2>
+  </div>
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2">
+    {projects.map((project, index) => (
+      <div 
+        class={`project-card group relative flex flex-col justify-between p-6 sm:p-8 transition-all hover:bg-muted/30 cursor-pointer ${
+          index % 2 !== 0 ? 'sm:border-l border-line' : ''
+        } ${
+          index < projects.length - 2 ? 'border-b border-line screen-line-bottom' : 'border-b sm:border-b-0 border-line screen-line-bottom'
+        }`}
+        data-project={JSON.stringify(project)}
+      >
+        <div>
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <h3 class="font-medium tracking-tight text-lg">{project.title}</h3>
+            {project.status === "Active" && (
+              <span class="inline-flex items-center rounded-md bg-info/10 px-2 py-1 text-xs font-medium text-info ring-1 ring-inset ring-info/20">Active</span>
+            )}
+            {project.status === "Completed" && (
+              <span class="inline-flex items-center rounded-md bg-success/10 px-2 py-1 text-xs font-medium text-success ring-1 ring-inset ring-success/20">Completed</span>
+            )}
+            {project.status === "In Progress" && (
+              <span class="inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium text-muted-foreground ring-1 ring-inset ring-border">In Progress</span>
+            )}
+          </div>
+          <p class="text-sm text-muted-foreground line-clamp-3 mb-6 leading-relaxed">
+            {project.description}
+          </p>
+        </div>
+        
+        <div class="mt-auto flex items-center justify-between">
+          <div class="flex items-center gap-2 flex-wrap">
+            {project.technologies.slice(0, 3).map((tech) => (
+              <span class="text-xs font-medium text-muted-foreground bg-muted/50 px-2 py-1 rounded border border-line">{tech}</span>
+            ))}
+            {project.technologies.length > 3 && (
+              <span class="text-xs font-medium text-muted-foreground bg-muted/50 px-2 py-1 rounded border border-line">+{project.technologies.length - 3}</span>
+            )}
+          </div>
+          <div class="flex items-center gap-1">
+            {project.github_url && project.github_url !== "#" && (
+              <a href={project.github_url} target="_blank" rel="noopener noreferrer" class="p-2 text-muted-foreground hover:text-foreground transition-colors" aria-label={`GitHub repository for ${project.title}`}>
+                <FaGithub className="size-4" />
+              </a>
+            )}
+            {project.demo_url && project.demo_url !== "#" && (
+              <a href={project.demo_url} target="_blank" rel="noopener noreferrer" class="p-2 text-muted-foreground hover:text-foreground transition-colors" aria-label={`Live URL for ${project.title}`}>
+                <ExternalLink className="size-4" />
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <ProjectModal client:load />
+
+  <script>
+    function setupProjectCards() {
+      const cards = document.querySelectorAll('.project-card');
+      cards.forEach(card => {
+        // Clone node to remove existing event listeners if setup runs multiple times
+        const newCard = card.cloneNode(true) as HTMLElement;
+        card.parentNode?.replaceChild(newCard, card);
+        
+        newCard.addEventListener('click', (e) => {
+          // Do not open modal if user is clicking a link inside the card
+          if ((e.target as HTMLElement).closest('a')) return;
+          
+          const projectData = JSON.parse(newCard.getAttribute('data-project') || '{}');
+          window.dispatchEvent(new CustomEvent('open-project-modal', { detail: projectData }));
+        });
+      });
+    }
+    
+    // Run setup immediately and on Astro page load if view transitions are used
+    setupProjectCards();
+    document.addEventListener('astro:page-load', setupProjectCards);
+  </script>
+</div>

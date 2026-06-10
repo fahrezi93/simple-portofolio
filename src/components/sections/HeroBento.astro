@@ -1,0 +1,149 @@
+---
+import { profile } from "../../data/profile";
+import { BadgeCheck, MapPin, Mail, Clock, CalendarDays } from "lucide-react";
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaDiscord } from "react-icons/fa";
+import { HeroRoleText } from "../ui/HeroRoleText";
+import WorldMap from "./WorldMap.astro";
+---
+
+<div class="screen-line-top screen-line-bottom border-x border-y border-line mt-14">
+  <WorldMap />
+</div>
+
+<div
+  class="screen-line-top screen-line-bottom grid grid-cols-1 sm:grid-cols-[200px_1fr] sm:grid-rows-[1fr_auto] overflow-y-clip border-x border-y border-line -mt-px"
+>
+  {/* Left Column: Profile Image (Row 1 & 2) */}
+  <div
+    class="flex flex-col sm:row-span-2 sm:row-start-1"
+  >
+    <div
+      class="mt-auto shrink-0 sm:border-r border-line p-4 sm:p-6 flex items-center justify-center"
+    >
+      <div
+        class="relative w-32 h-32 sm:w-40 sm:h-40 shrink-0 aspect-square rounded-full overflow-hidden border border-line bg-muted"
+      >
+        <img
+          src="/profile.webp"
+          alt="Mohammad Fahrezi"
+          class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+        />
+      </div>
+    </div>
+  </div>
+
+  {/* Right Column: Isometric / Top Space (Row 1) */}
+  <div class="p-6 flex items-center justify-end">
+    {
+      /* Optional: Add a logo or pattern here if needed, keeping it empty for minimal look */
+    }
+  </div>
+
+  {/* Right Column: Name & Title (Row 2) */}
+  <div class="flex flex-col sm:col-start-2">
+    <div class="mt-auto border-t border-line relative before:absolute before:-top-px before:left-0 before:-z-10 before:h-px before:w-[100vw] before:bg-line">
+      <div class="flex items-center gap-2 px-4 py-3">
+        <h1 class="text-3xl font-semibold tracking-tight">
+          {profile.name}
+        </h1>
+        <BadgeCheck className="size-5 text-info shrink-0" aria-hidden="true" />
+      </div>
+      <div class="h-12 border-t border-line relative before:absolute before:-top-px before:left-0 before:-z-10 before:h-px before:w-[100vw] before:bg-line px-4 flex items-center gap-1.5">
+        <span class="text-muted-foreground">I am a </span>
+        <HeroRoleText client:load />
+      </div>
+    </div>
+  </div>
+
+  {/* Info Grid Cell (Full Width) */}
+  <div class="flex flex-col col-span-1 sm:col-span-2">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-line border-b border-line screen-line-bottom"
+    >
+      {/* Left Info */}
+      <div class="p-4 space-y-3 text-sm text-muted-foreground">
+        <div class="flex items-center gap-3">
+          <CalendarDays className="size-4 shrink-0" />
+          <span>{profile.role}</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <MapPin className="size-4 shrink-0" />
+          <span>{profile.location}</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <Mail className="size-4 shrink-0" />
+          <a
+            href={`mailto:${profile.email}`}
+            class="hover:text-foreground hover:underline transition-colors"
+            >{profile.email}</a
+          >
+        </div>
+      </div>
+
+      {/* Right Info */}
+      <div class="p-4 space-y-3 text-sm text-muted-foreground">
+        <div class="flex items-center gap-3">
+          <Clock className="size-4 shrink-0" />
+          <span>Available for remote work</span>
+        </div>
+      </div>
+    </div>
+
+    {/* Social Links Bar */}
+    <div class="flex items-center gap-4 p-4 text-muted-foreground">
+      <a
+        href={profile.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
+      >
+        <FaGithub className="size-5" />
+        <span class="sr-only">GitHub</span>
+      </a>
+      <a
+        href={profile.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
+      >
+        <FaLinkedin className="size-5" />
+        <span class="sr-only">LinkedIn</span>
+      </a>
+      <a
+        href={profile.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
+      >
+        <FaInstagram className="size-5" />
+        <span class="sr-only">Instagram</span>
+      </a>
+      {
+        profile.twitter && (
+          <a
+            href={profile.twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
+          >
+            <FaTwitter className="size-5" />
+            <span class="sr-only">Twitter/X</span>
+          </a>
+        )
+      }
+      {
+        profile.discord && (
+          <a
+            href={profile.discord}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
+          >
+            <FaDiscord className="size-5" />
+            <span class="sr-only">Discord</span>
+          </a>
+        )
+      }
+    </div>
+  </div>
+</div>

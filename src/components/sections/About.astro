@@ -1,0 +1,48 @@
+---
+import { profile, experience } from "../../data/profile";
+---
+
+<section id="about" class="space-y-16 scroll-mt-24">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+    {/* About Bio */}
+    <div class="space-y-6">
+      <h2 class="text-3xl font-bold tracking-tight">About Me</h2>
+      <p class="text-muted-foreground leading-relaxed text-lg">
+        {profile.bio}
+      </p>
+      <div class="pt-4 flex gap-4">
+        <a href={profile.github} target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"><path d="M7.49933 0.25C3.49635 0.25 0.25 3.49593 0.25 7.50024C0.25 10.703 2.32715 13.4206 5.2081 14.3797C5.57084 14.446 5.70302 14.2222 5.70302 14.0299C5.70302 13.8576 5.69679 13.4019 5.69323 12.797C3.67661 13.235 3.25112 11.825 3.25112 11.825C2.92132 10.9874 2.44599 10.7644 2.44599 10.7644C1.78773 10.3149 2.49584 10.3238 2.49584 10.3238C3.22353 10.375 3.60629 11.0711 3.60629 11.0711C4.25298 12.1788 5.30335 11.8588 5.71638 11.6732C5.78258 11.205 5.96962 10.8854 6.17658 10.7043C4.56675 10.5209 2.87415 9.89918 2.87415 7.12159C2.87415 6.33115 3.15677 5.68255 3.62053 5.17563C3.54576 4.99226 3.29697 4.25591 3.69178 3.25615C3.69178 3.25615 4.30015 3.06198 5.68522 3.99971C6.26337 3.83906 6.8838 3.75895 7.50022 3.75583C8.1162 3.75895 8.73619 3.83906 9.31523 3.99971C10.6994 3.06198 11.3069 3.25615 11.3069 3.25615C11.7026 4.25591 11.4538 4.99226 11.3795 5.17563C11.8441 5.68255 12.1259 6.33115 12.1259 7.12159C12.1259 9.90609 10.4295 10.5187 8.81423 10.6983C9.07346 10.9221 9.30633 11.3648 9.30633 12.0413C9.30633 13.0102 9.29742 13.7922 9.29742 14.0299C9.29742 14.2239 9.42828 14.4496 9.79591 14.3788C12.6746 13.4179 14.75 10.7025 14.75 7.50024C14.75 3.49593 11.5036 0.25 7.49933 0.25Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          GitHub
+        </a>
+        <a href={profile.linkedin} target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"><path d="M4 4.5C4 5.32843 3.32843 6 2.5 6C1.67157 6 1 5.32843 1 4.5C1 3.67157 1.67157 3 2.5 3C3.32843 3 4 3.67157 4 4.5ZM1.5 7.5H3.5V14.5H1.5V7.5ZM5.5 7.5H7.5V8.5C7.8364 7.84288 8.64739 7.375 9.5 7.375C11.7091 7.375 13.5 9.16589 13.5 11.375V14.5H11.5V11.375C11.5 10.2704 10.6046 9.375 9.5 9.375C8.39543 9.375 7.5 10.2704 7.5 11.375V14.5H5.5V7.5Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+    {/* Experience Timeline */}
+    <div id="experience" class="space-y-6 scroll-mt-24">
+      <h3 class="text-2xl font-bold tracking-tight">Experience</h3>
+      <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border before:to-transparent">
+        {experience.map((item) => (
+          <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+            <div class="flex items-center justify-center w-10 h-10 rounded-full border border-border bg-background shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+              <div class="w-2 h-2 rounded-full bg-primary" />
+            </div>
+            
+            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-border/50 bg-card/50 hover:bg-card hover:border-border transition-colors">
+              <div class="flex items-center justify-between space-x-2 mb-1">
+                <h4 class="font-bold text-foreground">{item.role}</h4>
+                <time class="text-xs font-medium text-muted-foreground">{item.period}</time>
+              </div>
+              <div class="text-sm font-medium text-primary mb-2">{item.company}</div>
+              <p class="text-sm text-muted-foreground">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

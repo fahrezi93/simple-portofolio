@@ -1,0 +1,42 @@
+---
+import { programmingSkills, creativeSkills } from "../../data/skills";
+---
+
+<div class="screen-line-top screen-line-bottom overflow-y-clip border-x border-y border-line">
+  <div class="p-6 sm:p-8 border-b border-line screen-line-bottom">
+    <h2 class="text-2xl font-semibold tracking-tight">Tech Stack</h2>
+    <p class="text-sm text-muted-foreground mt-2">Tools & technologies I use to build digital experiences.</p>
+  </div>
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-line">
+    <div class="p-6 sm:p-8">
+      <h3 class="text-lg font-medium mb-6">Development</h3>
+      <div class="flex flex-wrap gap-2">
+        {programmingSkills.map((skill) => {
+          const Icon = skill.iconComponent;
+          return (
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded bg-muted/30 border border-line hover:bg-muted transition-colors">
+              <Icon className="w-4 h-4" />
+              <span class="text-sm font-medium">{skill.name}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+
+    <div class="p-6 sm:p-8">
+      <h3 class="text-lg font-medium mb-6">Design & Creative</h3>
+      <div class="flex flex-wrap gap-2">
+        {creativeSkills.map((skill) => {
+          const Icon = skill.iconComponent;
+          return (
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded bg-muted/30 border border-line hover:bg-muted transition-colors">
+              <Icon className="w-4 h-4" />
+              <span class="text-sm font-medium">{skill.name}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</div>

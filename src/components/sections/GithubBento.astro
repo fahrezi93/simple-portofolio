@@ -1,0 +1,23 @@
+---
+import { GitHubContributions } from '../ui/github-contributions';
+---
+
+<div class="screen-line-top screen-line-bottom overflow-y-clip border-x border-y border-line">
+  <div class="p-6 sm:p-8 border-b border-line screen-line-bottom flex items-center justify-between">
+    <div>
+      <h2 class="text-2xl font-semibold tracking-tight">Open Source</h2>
+      <p class="text-sm text-muted-foreground mt-2">My GitHub contributions and activity.</p>
+    </div>
+  </div>
+  
+  <div class="py-6 sm:py-8 flex justify-center border-b border-line screen-line-bottom">
+    <div class="w-full px-4 sm:px-8">
+      <GitHubContributions 
+        client:only="react" 
+        username="fahrezi93" 
+        githubProfileUrl="https://github.com/fahrezi93" 
+        className={`**:data-[level="0"]:fill-[#eff2f5] dark:**:data-[level="0"]:fill-[#151b23] **:data-[level="1"]:fill-[#aceebb] dark:**:data-[level="1"]:fill-[#033a16] **:data-[level="2"]:fill-[#4ac26b] dark:**:data-[level="2"]:fill-[#196c2e] **:data-[level="3"]:fill-[#2da44e] dark:**:data-[level="3"]:fill-[#2ea043] **:data-[level="4"]:fill-[#116329] dark:**:data-[level="4"]:fill-[#56d364]`}
+      />
+    </div>
+  </div>
+</div>

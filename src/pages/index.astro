@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Navigation } from '../components/shared/Navigation';
+import HeroBento from '../components/sections/HeroBento.astro';
+import AboutBento from '../components/sections/AboutBento.astro';
+import ProjectsBento from '../components/sections/ProjectsBento.astro';
+import TechStackBento from '../components/sections/TechStackBento.astro';
+import ExperienceBento from '../components/sections/ExperienceBento.astro';
+import CertificationsBento from '../components/sections/CertificationsBento.astro';
+import GithubBento from '../components/sections/GithubBento.astro';
+import ContactBento from '../components/sections/ContactBento.astro';
+import Footer from '../components/shared/Footer.astro';
+import Separator from '../components/shared/Separator.astro';
+---
+
+<Layout title="Mohammad Fahrezi | Developer & Designer">
+	<Navigation client:load />
+	
+	<main class="w-full">
+		<div class="animate-fade-in-up" style="animation-delay: 0ms">
+			<HeroBento />
+			<Separator />
+		</div>
+		
+		<div class="animate-fade-in-up" style="animation-delay: 150ms">
+			<AboutBento />
+			<Separator />
+		</div>
+		
+		<div class="animate-fade-in-up" style="animation-delay: 300ms">
+			<ProjectsBento />
+			<Separator />
+		</div>
+		
+		<div class="animate-fade-in-up" style="animation-delay: 450ms">
+			<TechStackBento />
+			<Separator />
+		</div>
+		
+		<div class="animate-fade-in-up" style="animation-delay: 600ms">
+			<ExperienceBento />
+			<Separator />
+		</div>
+		
+		<div class="animate-fade-in-up" style="animation-delay: 750ms">
+			<CertificationsBento />
+			<Separator />
+		</div>
+		
+		<div class="animate-fade-in-up" style="animation-delay: 900ms">
+			<GithubBento />
+			<Separator />
+		</div>
+		
+		<div class="animate-fade-in-up" style="animation-delay: 1050ms">
+			<ContactBento />
+			<Separator />
+		</div>
+	</main>
+
+	<Footer />
+</Layout>
+
