@@ -1,7 +1,7 @@
 ---
 import { profile } from "../../data/profile";
 import { FluidGradientText } from "../ui/fluid-gradient-text";
-import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaDiscord } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaDiscord, FaWhatsapp } from "react-icons/fa";
 import { Mail } from "lucide-react";
 ---
 
@@ -37,6 +37,12 @@ import { Mail } from "lucide-react";
         <a href={profile.twitter} target="_blank" rel="noreferrer" class="p-4 hover:bg-muted hover:text-foreground transition-colors border-r border-line">
           <FaTwitter className="size-5" />
           <span class="sr-only">Twitter</span>
+        </a>
+      )}
+      {profile.whatsapp && (
+        <a href={profile.whatsapp} target="_blank" rel="noreferrer" class="p-4 hover:bg-muted hover:text-foreground transition-colors border-r border-line">
+          <FaWhatsapp className="size-5" />
+          <span class="sr-only">WhatsApp</span>
         </a>
       )}
       <a href={`mailto:${profile.email}`} class="p-4 hover:bg-muted hover:text-foreground transition-colors">

@@ -11,48 +11,51 @@ import GithubBento from '../components/sections/GithubBento.astro';
 import ContactBento from '../components/sections/ContactBento.astro';
 import Footer from '../components/shared/Footer.astro';
 import Separator from '../components/shared/Separator.astro';
+import { ScrollIndicator } from '../components/ui/ScrollIndicator';
 ---
 
 <Layout title="Mohammad Fahrezi | Developer & Designer">
 	<Navigation client:load />
 	
-	<main class="w-full">
-		<div class="animate-fade-in-up" style="animation-delay: 0ms">
+	<main class="w-full relative">
+		<ScrollIndicator client:load />
+		
+		<div id="hero" class="animate-fade-in-up" style="animation-delay: 0ms">
 			<HeroBento />
 			<Separator />
 		</div>
 		
-		<div class="animate-fade-in-up" style="animation-delay: 150ms">
+		<div id="about" class="animate-fade-in-up" style="animation-delay: 150ms">
 			<AboutBento />
 			<Separator />
 		</div>
 		
-		<div class="animate-fade-in-up" style="animation-delay: 300ms">
+		<div id="projects" class="animate-fade-in-up" style="animation-delay: 300ms">
 			<ProjectsBento />
 			<Separator />
 		</div>
 		
-		<div class="animate-fade-in-up" style="animation-delay: 450ms">
+		<div id="tech-stack" class="animate-fade-in-up" style="animation-delay: 450ms">
 			<TechStackBento />
 			<Separator />
 		</div>
 		
-		<div class="animate-fade-in-up" style="animation-delay: 600ms">
+		<div id="experience" class="animate-fade-in-up" style="animation-delay: 600ms">
 			<ExperienceBento />
 			<Separator />
 		</div>
 		
-		<div class="animate-fade-in-up" style="animation-delay: 750ms">
+		<div id="certifications" class="animate-fade-in-up" style="animation-delay: 750ms">
 			<CertificationsBento />
 			<Separator />
 		</div>
 		
-		<div class="animate-fade-in-up" style="animation-delay: 900ms">
+		<div id="github" class="animate-fade-in-up" style="animation-delay: 900ms">
 			<GithubBento />
 			<Separator />
 		</div>
 		
-		<div class="animate-fade-in-up" style="animation-delay: 1050ms">
+		<div id="contact" class="animate-fade-in-up" style="animation-delay: 1050ms">
 			<ContactBento />
 			<Separator />
 		</div>

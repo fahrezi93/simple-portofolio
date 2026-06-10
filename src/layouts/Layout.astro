@@ -5,32 +5,52 @@ import { Preloader } from '../components/ui/Preloader';
 
 interface Props {
 	title: string;
+	description?: string;
+	image?: string;
 }
 
-const { title } = Astro.props;
+const { 
+	title,
+	description = "Mohammad Fahrezi - Developer & Designer Portfolio. Crafting immersive digital experiences.",
+	image = "/og-image.png"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, 'https://dev.fahrezi.tech');
+const imageURL = new URL(image, 'https://dev.fahrezi.tech');
 ---
 
 <!doctype html>
 <html lang="en" class="dark scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Mohammad Fahrezi - Developer & Designer Portfolio" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/png" href="/fahrezi_white_logo.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		
+		<!-- SEO Basics -->
+		<link rel="canonical" href={canonicalURL} />
+		<meta name="author" content="Mohammad Fahrezi" />
+		<meta name="robots" content="index, follow" />
+		<meta name="keywords" content="Mohammad Fahrezi, fahrezi93, Frontend Developer, Graphic Designer, Web Developer, UI/UX Designer, React, Astro, Next.js, TailwindCSS, Indonesia" />
+		
 		<!-- OpenGraph Meta Tags -->
+		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:title" content={title} />
-		<meta property="og:description" content="Mohammad Fahrezi - Developer & Designer Portfolio. Crafting immersive digital experiences." />
-		<meta property="og:image" content="/og-image.png" />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={imageURL} />
 		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Mohammad Fahrezi Portfolio" />
+		<meta property="og:locale" content="en_US" />
 		
 		<!-- Twitter Meta Tags -->
 		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={canonicalURL} />
 		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content="Mohammad Fahrezi - Developer & Designer Portfolio. Crafting immersive digital experiences." />
-		<meta name="twitter:image" content="/og-image.png" />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={imageURL} />
+		<meta name="twitter:creator" content="@fahrrrezi" />
 		<script is:inline>
 			const theme = (() => {
 				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {

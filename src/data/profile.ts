@@ -10,7 +10,7 @@ export const profile = {
   instagram: "https://instagram.com/moh.fahrezi",
   discord: "https://discord.com/users/1058224849161572397",
   twitter: "https://twitter.com/fahrrrezi",
-
+  whatsapp: "https://wa.me/6285872381791",
 };
 
 export const experience = [
