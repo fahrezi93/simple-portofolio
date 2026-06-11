@@ -15,7 +15,7 @@ import WorldMap from "./WorldMap.astro";
 >
   {/* Left Column: Profile Image (Row 1 & 2) */}
   <div
-    class="flex flex-col sm:row-span-2 sm:row-start-1"
+    class="flex flex-col sm:row-span-2 sm:row-start-1 bg-background relative z-10"
   >
     <div
       class="mt-auto shrink-0 sm:border-r border-line p-4 sm:p-6 flex items-center justify-center"
@@ -41,14 +41,14 @@ import WorldMap from "./WorldMap.astro";
 
   {/* Right Column: Name & Title (Row 2) */}
   <div class="flex flex-col sm:col-start-2">
-    <div class="mt-auto border-t border-line relative before:absolute before:-top-px before:left-0 before:-z-10 before:h-px before:w-[100vw] before:bg-line">
+    <div class="mt-auto border-t border-line relative before:absolute before:-top-px before:left-[-100vw] before:-z-10 before:h-px before:w-[200vw] before:bg-line">
       <div class="flex items-center gap-2 px-4 py-3">
         <h1 class="text-3xl font-semibold tracking-tight">
           {profile.name}
         </h1>
         <BadgeCheck className="size-5 text-info shrink-0" aria-hidden="true" />
       </div>
-      <div class="h-12 border-t border-line relative before:absolute before:-top-px before:left-0 before:-z-10 before:h-px before:w-[100vw] before:bg-line px-4 flex items-center gap-1.5">
+      <div class="h-12 border-t border-b border-line relative before:absolute before:-top-px before:left-[-100vw] before:-z-10 before:h-px before:w-[200vw] before:bg-line after:absolute after:-bottom-px after:left-[-100vw] after:-z-10 after:h-px after:w-[200vw] after:bg-line px-4 flex items-center gap-1.5">
         <span class="text-muted-foreground">I am a </span>
         <HeroRoleText client:load />
       </div>

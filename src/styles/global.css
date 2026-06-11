@@ -146,15 +146,14 @@
   }
 
   ::view-transition-new(root) {
-    /* Base64 encoded SVG to bypass Vite %23blur resolution bug on Vercel */
-    mask: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+PGRlZnM+PGZpbHRlciBpZD0iYmx1ciI+PGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMiIvPjwvZmlsdGVyPjwvZGVmcz48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxOCIgZmlsbD0id2hpdGUiIGZpbHRlcj0idXJsKCNibHVyKSIvPjwvc3ZnPg==')
+    mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="white"/></svg>')
       center / 0 no-repeat;
-    animation: scale 1s;
+    animation: scale 0.8s;
     animation-fill-mode: both;
   }
 
   .dark::view-transition-new(root) {
-    animation: scale 1s;
+    animation: scale 0.8s;
     animation-fill-mode: both;
   }
 
