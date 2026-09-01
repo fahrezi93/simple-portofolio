@@ -1,8 +1,29 @@
 ---
-import { experience } from "../../data/profile";
+import { experience, education } from "../../data/profile";
 ---
 
 <div id="experience" class="screen-line-top screen-line-bottom overflow-y-clip border-x border-y border-line scroll-mt-24">
+  {/* Education Section */}
+  <div class="p-6 sm:p-8 border-b border-line screen-line-bottom">
+    <h2 class="text-2xl font-semibold tracking-tight">Education</h2>
+  </div>
+
+  <div class="flex flex-col border-b border-line screen-line-bottom">
+    {education.map((item) => (
+      <div class="p-6 sm:p-8 transition-colors hover:bg-muted/30">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+          <h3 class="font-medium tracking-tight text-lg">{item.degree}</h3>
+          <time class="text-sm font-medium text-muted-foreground bg-muted px-2 py-1 rounded border border-line w-fit">{item.period}</time>
+        </div>
+        <div class="text-sm font-medium text-foreground mb-4">{item.institution}</div>
+        <p class="text-sm text-muted-foreground leading-relaxed max-w-2xl">
+          {item.description}
+        </p>
+      </div>
+    ))}
+  </div>
+
+  {/* Experience Section */}
   <div class="p-6 sm:p-8 border-b border-line screen-line-bottom">
     <h2 class="text-2xl font-semibold tracking-tight">Experience</h2>
   </div>

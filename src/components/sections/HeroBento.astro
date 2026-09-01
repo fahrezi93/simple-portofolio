@@ -1,12 +1,31 @@
 ---
 import { profile } from "../../data/profile";
-import { BadgeCheck, MapPin, Mail, Clock, CalendarDays } from "lucide-react";
-import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaDiscord, FaWhatsapp } from "react-icons/fa";
+import {
+  BadgeCheck,
+  MapPin,
+  Mail,
+  Clock,
+  Code2,
+  GraduationCap,
+  Briefcase,
+  FileText,
+} from "lucide-react";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaInstagram,
+  FaDiscord,
+  FaWhatsapp,
+} from "react-icons/fa";
 import { HeroRoleText } from "../ui/HeroRoleText";
+import { LocalTime } from "../ui/LocalTime";
 import WorldMap from "./WorldMap.astro";
 ---
 
-<div class="screen-line-top screen-line-bottom border-x border-y border-line mt-14">
+<div
+  class="screen-line-top screen-line-bottom border-x border-y border-line mt-14"
+>
   <WorldMap />
 </div>
 
@@ -32,23 +51,24 @@ import WorldMap from "./WorldMap.astro";
     </div>
   </div>
 
-  {/* Right Column: Isometric / Top Space (Row 1) */}
+  {/* Right Column: Top Space (Row 1) */}
   <div class="p-6 flex items-center justify-end">
-    {
-      /* Optional: Add a logo or pattern here if needed, keeping it empty for minimal look */
-    }
   </div>
 
   {/* Right Column: Name & Title (Row 2) */}
   <div class="flex flex-col sm:col-start-2">
-    <div class="mt-auto border-t border-line relative before:absolute before:-top-px before:left-[-100vw] before:-z-10 before:h-px before:w-[200vw] before:bg-line">
+    <div
+      class="mt-auto border-t border-line relative before:absolute before:-top-px before:left-[-100vw] before:-z-10 before:h-px before:w-[200vw] before:bg-line"
+    >
       <div class="flex items-center gap-2 px-4 py-3">
         <h1 class="text-3xl font-semibold tracking-tight">
           {profile.name}
         </h1>
         <BadgeCheck className="size-5 text-info shrink-0" aria-hidden="true" />
       </div>
-      <div class="h-12 border-t border-b border-line relative before:absolute before:-top-px before:left-[-100vw] before:-z-10 before:h-px before:w-[200vw] before:bg-line after:absolute after:-bottom-px after:left-[-100vw] after:-z-10 after:h-px after:w-[200vw] after:bg-line px-4 flex items-center gap-1.5">
+      <div
+        class="h-12 border-t border-line relative before:absolute before:-top-px before:left-[-100vw] before:-z-10 before:h-px before:w-[200vw] before:bg-line px-4 flex items-center gap-1.5"
+      >
         <span class="text-muted-foreground">I am a </span>
         <HeroRoleText client:load />
       </div>
@@ -56,14 +76,14 @@ import WorldMap from "./WorldMap.astro";
   </div>
 
   {/* Info Grid Cell (Full Width) */}
-  <div class="flex flex-col col-span-1 sm:col-span-2">
+  <div class="flex flex-col col-span-1 sm:col-span-2 border-t border-line screen-line-top">
     <div
       class="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-line border-b border-line screen-line-bottom"
     >
       {/* Left Info */}
       <div class="p-4 space-y-3 text-sm text-muted-foreground">
         <div class="flex items-center gap-3">
-          <CalendarDays className="size-4 shrink-0" />
+          <Code2 className="size-4 shrink-0" />
           <span>{profile.role}</span>
         </div>
         <div class="flex items-center gap-3">
@@ -83,77 +103,101 @@ import WorldMap from "./WorldMap.astro";
       {/* Right Info */}
       <div class="p-4 space-y-3 text-sm text-muted-foreground">
         <div class="flex items-center gap-3">
+          <GraduationCap className="size-4 shrink-0" />
+          <span>Universitas Sriwijaya</span>
+        </div>
+        <div class="flex items-center gap-3">
           <Clock className="size-4 shrink-0" />
-          <span>Available for remote work</span>
+          <LocalTime client:load />
+        </div>
+        <div class="flex items-center gap-3">
+          <Briefcase className="size-4 shrink-0" />
+          <span>Available for work</span>
         </div>
       </div>
     </div>
 
     {/* Social Links Bar */}
-    <div class="flex items-center gap-4 p-4 text-muted-foreground">
-      <a
-        href={profile.github}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
-      >
-        <FaGithub className="size-5" />
-        <span class="sr-only">GitHub</span>
-      </a>
-      <a
-        href={profile.linkedin}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
-      >
-        <FaLinkedin className="size-5" />
-        <span class="sr-only">LinkedIn</span>
-      </a>
-      <a
-        href={profile.instagram}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
-      >
-        <FaInstagram className="size-5" />
-        <span class="sr-only">Instagram</span>
-      </a>
+    <div class="flex items-center justify-between p-4 text-muted-foreground flex-wrap gap-3">
+      <div class="flex items-center gap-2">
+        <a
+          href={profile.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
+        >
+          <FaGithub className="size-5" />
+          <span class="sr-only">GitHub</span>
+        </a>
+        <a
+          href={profile.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
+        >
+          <FaLinkedin className="size-5" />
+          <span class="sr-only">LinkedIn</span>
+        </a>
+        <a
+          href={profile.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
+        >
+          <FaInstagram className="size-5" />
+          <span class="sr-only">Instagram</span>
+        </a>
+        {
+          profile.twitter && (
+            <a
+              href={profile.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
+            >
+              <FaTwitter className="size-5" />
+              <span class="sr-only">Twitter/X</span>
+            </a>
+          )
+        }
+        {
+          profile.discord && (
+            <a
+              href={profile.discord}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
+            >
+              <FaDiscord className="size-5" />
+              <span class="sr-only">Discord</span>
+            </a>
+          )
+        }
+        {
+          profile.whatsapp && (
+            <a
+              href={profile.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
+            >
+              <FaWhatsapp className="size-5" />
+              <span class="sr-only">WhatsApp</span>
+            </a>
+          )
+        }
+      </div>
+
       {
-        profile.twitter && (
+        profile.resume && (
           <a
-            href={profile.twitter}
+            href={profile.resume}
             target="_blank"
             rel="noopener noreferrer"
-            class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-line bg-muted/40 hover:bg-muted text-foreground text-xs font-medium transition-colors"
           >
-            <FaTwitter className="size-5" />
-            <span class="sr-only">Twitter/X</span>
-          </a>
-        )
-      }
-      {
-        profile.discord && (
-          <a
-            href={profile.discord}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
-          >
-            <FaDiscord className="size-5" />
-            <span class="sr-only">Discord</span>
-          </a>
-        )
-      }
-      {
-        profile.whatsapp && (
-          <a
-            href={profile.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:text-foreground transition-colors p-2 rounded-md hover:bg-muted"
-          >
-            <FaWhatsapp className="size-5" />
-            <span class="sr-only">WhatsApp</span>
+            <FileText className="size-3.5" />
+            <span>Resume</span>
           </a>
         )
       }

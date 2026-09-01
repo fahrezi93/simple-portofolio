@@ -75,6 +75,7 @@ export function Navigation() {
             <a href="#experience" className="hover:text-foreground transition-colors">Experience</a>
             <a href="#projects" className="hover:text-foreground transition-colors">Projects</a>
             <a href="#contact" className="hover:text-foreground transition-colors">Contact</a>
+            <a href="/CV%20Mohammad%20Fahrezi%20Dev.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Resume</a>
           </nav>
 
           <div className="flex items-center gap-2">

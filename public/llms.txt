@@ -1,0 +1,45 @@
+# Mohammad Fahrezi
+
+> Developer & Designer Portfolio — Crafting immersive digital experiences.
+
+Mohammad Fahrezi is a passionate Computer Science fresh graduate from Sriwijaya University (UNSRI), Indonesia, specializing in Front-End Web Development, Full-Stack Web Applications, UI/UX Design, and Graphic Design.
+
+## Summary & Education
+- **Full Name**: Mohammad Fahrezi
+- **Education**: Bachelor of Computer Science (Fresh Graduate), Universitas Sriwijaya (UNSRI)
+- **Role**: Front-End Developer, Web Developer, Graphic & UI/UX Designer
+- **Location**: Indonesia (Available for Remote Work)
+- **Email**: hello@fahrezi.tech
+- **Website**: https://dev.fahrezi.tech
+- **GitHub**: https://github.com/fahrezi93
+- **LinkedIn**: https://linkedin.com/in/mohammad-fahrezi
+
+## Technical Skills & Tech Stack
+- **Frontend Development**: React, Next.js, Astro, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS
+- **Backend & Cloud**: Node.js, Python, Flask, Firebase, Supabase, PostgreSQL, Google Cloud Platform (GCP)
+- **AI & Machine Learning**: TensorFlow, Keras, OpenCV, Genkit AI, Natural Language Processing (NLP)
+- **Design & Multimedia**: Figma (UI/UX), Adobe Photoshop, Adobe Premiere Pro, Adobe After Effects, Canva, CapCut
+
+## Featured Projects
+- **Chatbot AI (Aksara AI)**: Intelligent conversational AI with natural language processing built with Python, Flask, Firebase, and JavaScript. (https://aksara-ai.vercel.app)
+- **Waste Classifier**: AI-powered waste classification application using deep learning models built with React, Tailwind CSS, Python, TensorFlow, and Keras. (https://waste-classifier-v1.vercel.app)
+- **NutriSuggest**: Health and nutrition food recommendation web platform using React, TypeScript, Python, and Flask. (https://nutrisuggest.vercel.app)
+- **Thrift Haven**: E-commerce marketplace for second-hand items built with Next.js, TypeScript, PostgreSQL, and Firebase. (https://thrifting-haven.vercel.app)
+- **Simpan Cepat**: AI-powered note-taking and productivity app built with Next.js, Firebase, TypeScript, and Google Genkit.
+- **Smart Attendance**: Face-recognition attendance marking system built with Python, OpenCV, Flask, and React.
+
+## Experience & Leadership
+- **Graphic Designer** at PT Tiga Rasa Gemilang (Feb 2026 - Present)
+- **Website & Design Services** at KreativLabs.id (Nov 2025 - Present)
+- **Cloud Computing Cohort** at Bangkit Academy led by Google, Tokopedia, GoTo, Traveloka (Sep 2024 - Dec 2024)
+- **Head of Multimedia Division** at HMIF UNSRI (Jan 2024 - Dec 2024)
+- **Media and Creative Member** at Google Developer Student Clubs (GDSC) UNSRI (Oct 2023 - Aug 2024)
+- **Multimedia Staff** at FASCO UNSRI, HMIF UNSRI, and WIFI UNSRI (2023 - 2024)
+
+## Key Certifications
+- Membangun Sistem Machine Learning — Dicoding Indonesia (May 2026)
+- Belajar Fundamental Deep Learning — Dicoding Indonesia (May 2026)
+- Belajar Machine Learning untuk Pemula — Dicoding Indonesia (May 2026)
+- Introduction to Artificial Intelligence & Generative AI — IBM (Apr 2026)
+- Menjadi Google Cloud Engineer — Dicoding Indonesia (Nov 2024)
+- Belajar Dasar Pemrograman Web & JavaScript — Dicoding Indonesia (2024)

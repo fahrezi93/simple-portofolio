@@ -32,8 +32,14 @@ const imageURL = new URL(image, 'https://dev.fahrezi.tech');
 		<!-- SEO Basics -->
 		<link rel="canonical" href={canonicalURL} />
 		<meta name="author" content="Mohammad Fahrezi" />
-		<meta name="robots" content="index, follow" />
-		<meta name="keywords" content="Mohammad Fahrezi, fahrezi93, Frontend Developer, Graphic Designer, Web Developer, UI/UX Designer, React, Astro, Next.js, TailwindCSS, Indonesia" />
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+		<meta name="keywords" content="Mohammad Fahrezi, fahrezi93, Frontend Developer Indonesia, Web Developer Palembang, Fresh Graduate UNSRI, Fresh Graduate Universitas Sriwijaya, Ilmu Komputer Unsri, Computer Science Graduate, Graphic Designer Indonesia, UI UX Designer, React Developer, Astro, Next.js, Tailwind CSS, TypeScript, Portfolio Developer" />
+		<meta name="theme-color" content="#000000" />
+		<meta name="color-scheme" content="dark light" />
+		
+		<!-- AI & Machine Discovery Links -->
+		<link rel="alternate" type="text/plain" href="/llms.txt" title="LLM context" />
+		<link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 		
 		<!-- OpenGraph Meta Tags -->
 		<meta property="og:url" content={canonicalURL} />
@@ -43,6 +49,7 @@ const imageURL = new URL(image, 'https://dev.fahrezi.tech');
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="Mohammad Fahrezi Portfolio" />
 		<meta property="og:locale" content="en_US" />
+		<meta property="og:locale:alternate" content="id_ID" />
 		
 		<!-- Twitter Meta Tags -->
 		<meta name="twitter:card" content="summary_large_image" />
@@ -50,7 +57,89 @@ const imageURL = new URL(image, 'https://dev.fahrezi.tech');
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={imageURL} />
+		<meta name="twitter:image:alt" content="Mohammad Fahrezi - Developer & Designer" />
 		<meta name="twitter:creator" content="@fahrrrezi" />
+		<meta name="twitter:site" content="@fahrrrezi" />
+
+		<!-- Structured Data (JSON-LD) for Google & AI Search Engines -->
+		<script type="application/ld+json" is:inline>
+			{
+				"@context": "https://schema.org",
+				"@graph": [
+					{
+						"@type": "ProfilePage",
+						"@id": "https://dev.fahrezi.tech/#profilepage",
+						"url": "https://dev.fahrezi.tech",
+						"name": "Mohammad Fahrezi - Developer & Designer Portfolio",
+						"description": "Mohammad Fahrezi - Computer Science Fresh Graduate from Sriwijaya University (UNSRI), Frontend Developer & Designer Portfolio.",
+						"mainEntity": {
+							"@id": "https://dev.fahrezi.tech/#person"
+						}
+					},
+					{
+						"@type": "Person",
+						"@id": "https://dev.fahrezi.tech/#person",
+						"name": "Mohammad Fahrezi",
+						"alternateName": ["Fahrezi", "fahrezi93", "Moh. Fahrezi"],
+						"url": "https://dev.fahrezi.tech",
+						"image": "https://dev.fahrezi.tech/profile.webp",
+						"jobTitle": [
+							"Frontend Developer",
+							"Web Developer",
+							"Graphic Designer",
+							"UI/UX Designer"
+						],
+						"email": "mailto:hello@fahrezi.tech",
+						"alumniOf": {
+							"@type": "CollegeOrUniversity",
+							"name": "Universitas Sriwijaya",
+							"alternateName": "UNSRI",
+							"sameAs": "https://unsri.ac.id"
+						},
+						"knowsAbout": [
+							"Frontend Development",
+							"Web Development",
+							"React",
+							"Next.js",
+							"Astro",
+							"TypeScript",
+							"JavaScript",
+							"Tailwind CSS",
+							"Python",
+							"Flask",
+							"Machine Learning",
+							"Cloud Computing",
+							"UI/UX Design",
+							"Graphic Design",
+							"Figma",
+							"Adobe Photoshop"
+						],
+						"sameAs": [
+							"https://github.com/fahrezi93",
+							"https://linkedin.com/in/mohammad-fahrezi",
+							"https://instagram.com/moh.fahrezi",
+							"https://twitter.com/fahrrrezi"
+						],
+						"address": {
+							"@type": "PostalAddress",
+							"addressCountry": "Indonesia"
+						},
+						"description": "Mohammad Fahrezi is a Computer Science graduate from Sriwijaya University focused on full-stack web development and UI/UX design."
+					},
+					{
+						"@type": "WebSite",
+						"@id": "https://dev.fahrezi.tech/#website",
+						"url": "https://dev.fahrezi.tech",
+						"name": "Mohammad Fahrezi Portfolio",
+						"description": "Portfolio of Mohammad Fahrezi, Developer & Designer.",
+						"publisher": {
+							"@id": "https://dev.fahrezi.tech/#person"
+						},
+						"inLanguage": ["en", "id"]
+					}
+				]
+			}
+		</script>
 		<script is:inline>
 			const theme = (() => {
 				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {

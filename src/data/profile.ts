@@ -1,8 +1,8 @@
 export const profile = {
   name: "Mohammad Fahrezi",
-  role: "Developer & Designer",
-  tagline: "Crafting immersive digital experiences.",
-  bio: "Hello! I'm Mohammad Fahrezi, a passionate Computer Science student at Sriwijaya University with a deep fascination for Front-End Development and Graphic Design. I believe technology has the extraordinary power to transform creative ideas into meaningful digital experiences that make a real difference. I'm constantly pushing boundaries through intensive development programs and exploring cutting-edge technologies.",
+  role: "Software Engineer & UI/UX Designer",
+  tagline: "Building clean, functional, and user-friendly web applications.",
+  bio: "A Computer Science graduate from Sriwijaya University with practical experience in frontend and full-stack development. I work regularly with React, Next.js, TypeScript, and Tailwind CSS, while also designing interfaces in Figma and connecting backend services with Python, Node.js, and cloud tools. I enjoy taking ideas from concept to working products that people can actually use.",
   email: "hello@fahrezi.tech",
   location: "Indonesia",
   github: "https://github.com/fahrezi93",
@@ -11,7 +11,24 @@ export const profile = {
   discord: "https://discord.com/users/1058224849161572397",
   twitter: "https://twitter.com/fahrrrezi",
   whatsapp: "https://wa.me/6285872381791",
+  resume: "/CV%20Mohammad%20Fahrezi%20Dev.pdf",
 };
+
+export interface Education {
+  degree: string;
+  institution: string;
+  period: string;
+  description: string;
+}
+
+export const education: Education[] = [
+  {
+    degree: "Bachelor of Computer Science (S.Kom)",
+    institution: "Universitas Sriwijaya (UNSRI)",
+    period: "2022 - 2026",
+    description: "Graduated in Computer Science (Ilmu Komputer) with strong foundational knowledge in Software Engineering, Front-End Development, Cloud Computing, and Machine Learning. Active leader in multimedia student associations and Google Developer Student Clubs."
+  }
+];
 
 export const experience = [
   {
@@ -22,7 +39,7 @@ export const experience = [
   },
   {
     role: "Cloud Computing Cohort",
-    company: "Bangkit Academy",
+    company: "Bangkit Academy led by Google",
     period: "Sep 2024 - Dec 2024",
     description: "Participated in an intensive cloud computing training program focused on Google Cloud Platform. Developing scalable and efficient cloud-based applications and infrastructure. Collaborated with cross-functional teams on capstone projects using modern web and cloud technologies."
   },

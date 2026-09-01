@@ -1,7 +1,13 @@
 import { motion } from "motion/react";
 import { TextFlip } from "./text-flip";
 
-const WORDS = ["Developer", "AI Engineer", "Designer", "Video Editor"];
+const WORDS = [
+  "Software Engineer",
+  "Full-Stack Developer",
+  "AI Engineer",
+  "UI/UX Designer",
+  "Cloud Engineer"
+];
 
 export function HeroRoleText() {
   return (

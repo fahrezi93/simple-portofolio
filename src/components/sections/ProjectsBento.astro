@@ -1,11 +1,26 @@
 ---
 import { ProjectsService } from "../../lib/projects-service";
+import { projects as fallbackProjects } from "../../data/portfolio";
 import { ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { ProjectModal } from "../ui/ProjectModal";
 
 const { data: dbProjects, success } = await ProjectsService.getFeaturedProjects('development');
-const projects = success && dbProjects ? dbProjects : [];
+const projects = (success && dbProjects && dbProjects.length > 0)
+  ? dbProjects
+  : fallbackProjects.map(p => ({
+      title: p.title,
+      description: p.description,
+      status: p.status,
+      technologies: p.technologies,
+      github_url: p.githubUrl,
+      demo_url: p.liveUrl,
+      image_url: p.image,
+      year: p.year,
+      type: p.type,
+      category: 'development' as const,
+      featured: true
+    }));
 ---
 
 <div class="screen-line-top screen-line-bottom overflow-y-clip border-x border-y border-line">
