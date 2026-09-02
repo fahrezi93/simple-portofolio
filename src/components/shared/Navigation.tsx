@@ -29,7 +29,10 @@ export function Navigation() {
       }
     };
 
-    if (!document.startViewTransition) {
+    if (
+      !document.startViewTransition ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       switchTheme();
       return;
     }
@@ -80,11 +83,15 @@ export function Navigation() {
 
           <div className="flex items-center gap-2">
             <button
-              className="text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none flex items-center justify-center p-2"
+              className="text-muted-foreground hover:text-foreground transition-all duration-200 active:scale-90 hover:scale-105 focus-visible:outline-none flex items-center justify-center p-2 rounded-md hover:bg-muted/40 cursor-pointer"
               onClick={toggleTheme}
               aria-label="Toggle theme"
             >
-              {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              {theme === "dark" ? (
+                <Sun className="w-4 h-4 transition-transform duration-300 hover:rotate-45" />
+              ) : (
+                <Moon className="w-4 h-4 transition-transform duration-300 hover:-rotate-12" />
+              )}
             </button>
           </div>
         </div>
