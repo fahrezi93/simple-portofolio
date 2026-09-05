@@ -2,35 +2,43 @@
 import { education } from "../../data/profile";
 import { WORK_EXPERIENCE } from "../../data/work-experience";
 import { WorkExperience } from "../work-experience";
+import Separator from "../shared/Separator.astro";
 ---
 
-<div id="experience" class="screen-line-top screen-line-bottom overflow-y-clip border-x border-y border-line scroll-mt-24">
+<div class="flex flex-col">
   {/* Education Section */}
-  <div class="p-6 sm:p-8 border-b border-line screen-line-bottom">
-    <h2 class="text-2xl font-semibold tracking-tight">Education</h2>
+  <div class="screen-line-top screen-line-bottom overflow-y-clip border-x border-y border-line">
+    <div class="p-6 sm:p-8 border-b border-line screen-line-bottom">
+      <h2 class="font-handwriting text-3xl sm:text-4xl font-bold tracking-wide text-foreground leading-none">Education</h2>
+    </div>
+
+    <div class="flex flex-col">
+      {education.map((item) => (
+        <div class="p-6 sm:p-8 transition-colors hover:bg-muted/30">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+            <h3 class="font-medium tracking-tight text-lg">{item.degree}</h3>
+            <time class="text-sm font-medium text-muted-foreground bg-muted px-2 py-1 rounded border border-line w-fit">{item.period}</time>
+          </div>
+          <div class="text-sm font-medium text-foreground mb-4">{item.institution}</div>
+          <p class="text-sm text-muted-foreground leading-relaxed max-w-2xl">
+            {item.description}
+          </p>
+        </div>
+      ))}
+    </div>
   </div>
 
-  <div class="flex flex-col border-b border-line screen-line-bottom">
-    {education.map((item) => (
-      <div class="p-6 sm:p-8 transition-colors hover:bg-muted/30">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-          <h3 class="font-medium tracking-tight text-lg">{item.degree}</h3>
-          <time class="text-sm font-medium text-muted-foreground bg-muted px-2 py-1 rounded border border-line w-fit">{item.period}</time>
-        </div>
-        <div class="text-sm font-medium text-foreground mb-4">{item.institution}</div>
-        <p class="text-sm text-muted-foreground leading-relaxed max-w-2xl">
-          {item.description}
-        </p>
-      </div>
-    ))}
-  </div>
+  {/* Separator between Education and Work Experience */}
+  <Separator />
 
   {/* Experience Section */}
-  <div class="p-6 sm:p-8 border-b border-line screen-line-bottom">
-    <h2 class="text-2xl font-semibold tracking-tight">Work Experience</h2>
-  </div>
-  
-  <div class="p-4 sm:p-6">
-    <WorkExperience client:load experiences={WORK_EXPERIENCE} />
+  <div class="screen-line-top screen-line-bottom overflow-y-clip border-x border-y border-line">
+    <div class="p-6 sm:p-8 border-b border-line screen-line-bottom">
+      <h2 class="font-handwriting text-3xl sm:text-4xl font-bold tracking-wide text-foreground leading-none">Work Experience</h2>
+    </div>
+    
+    <div class="p-4 sm:p-6">
+      <WorkExperience client:load experiences={WORK_EXPERIENCE} />
+    </div>
   </div>
 </div>

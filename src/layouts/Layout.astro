@@ -2,6 +2,7 @@
 import '../styles/global.css';
 
 import { Preloader } from '../components/ui/Preloader';
+import { PixelBlast } from '../components/ui/PixelBlast';
 
 interface Props {
 	title: string;
@@ -28,6 +29,11 @@ const imageURL = new URL(image, 'https://dev.fahrezi.tech');
 		<link rel="icon" type="image/png" href="/fahrezi_white_logo.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+
+		<!-- Google Fonts for handwriting script -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
 		
 		<!-- SEO Basics -->
 		<link rel="canonical" href={canonicalURL} />
@@ -159,7 +165,12 @@ const imageURL = new URL(image, 'https://dev.fahrezi.tech');
 			window.localStorage.setItem('theme', theme);
 		</script>
 	</head>
-	<body class="min-h-screen bg-background text-foreground antialiased selection:bg-foreground selection:text-background overflow-x-hidden">
+	<body class="min-h-screen bg-background text-foreground antialiased selection:bg-foreground selection:text-background overflow-x-hidden relative">
+		<!-- Ambient PixelBlast dots on left & right margins (flanks) like zickrian.dev (disabled on mobile) -->
+		<div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 hidden sm:block overflow-hidden select-none">
+			<PixelBlast client:media="(min-width: 640px)" className="w-full h-full" pixelSize={7} patternScale={2.0} patternDensity={0.78} speed={0.35} opacity={0.45} />
+		</div>
+
 		<Preloader client:load />
 		<div class="mx-auto md:max-w-3xl border-x border-line min-h-screen relative dark:shadow-none bg-background">
 			<slot />

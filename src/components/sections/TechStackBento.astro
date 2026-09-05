@@ -1,42 +1,146 @@
 ---
-import { programmingSkills, creativeSkills } from "../../data/skills";
+import { devSkillCategories, designSkillCategories } from "../../data/skills";
 ---
 
 <div class="screen-line-top screen-line-bottom overflow-y-clip border-x border-y border-line">
-  <div class="p-6 sm:p-8 border-b border-line screen-line-bottom">
-    <h2 class="text-2xl font-semibold tracking-tight">Tech Stack</h2>
-    <p class="text-sm text-muted-foreground mt-2">Tools & technologies I use to build digital experiences.</p>
-  </div>
-  
-  <div class="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-line">
-    <div class="p-6 sm:p-8">
-      <h3 class="text-lg font-medium mb-6">Development</h3>
-      <div class="flex flex-wrap gap-2">
-        {programmingSkills.map((skill) => {
-          const Icon = skill.iconComponent;
-          return (
-            <div class="flex items-center gap-2 px-3 py-1.5 rounded bg-muted/30 border border-line hover:bg-muted transition-colors">
-              <Icon className="w-4 h-4" />
-              <span class="text-sm font-medium">{skill.name}</span>
-            </div>
-          );
-        })}
-      </div>
+  {/* Header with Cursive Stack Title & Segmented Tab Switcher */}
+  <div class="p-6 sm:p-8 border-b border-line screen-line-bottom flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <h2 class="font-handwriting text-3xl sm:text-4xl font-bold tracking-wide text-foreground select-none leading-none">
+        Stack
+      </h2>
+      <span class="text-xs text-muted-foreground/80 pl-1 border-l border-line">
+        Technologies & Tools
+      </span>
     </div>
 
-    <div class="p-6 sm:p-8">
-      <h3 class="text-lg font-medium mb-6">Design & Creative</h3>
-      <div class="flex flex-wrap gap-2">
-        {creativeSkills.map((skill) => {
-          const Icon = skill.iconComponent;
-          return (
-            <div class="flex items-center gap-2 px-3 py-1.5 rounded bg-muted/30 border border-line hover:bg-muted transition-colors">
-              <Icon className="w-4 h-4" />
-              <span class="text-sm font-medium">{skill.name}</span>
-            </div>
-          );
-        })}
-      </div>
+    {/* Dev / Design Switcher */}
+    <div 
+      class="inline-flex items-center p-1 rounded-lg bg-muted/40 border border-line text-xs font-medium self-start sm:self-auto"
+      role="tablist"
+      aria-label="Tech stack categories"
+    >
+      <button
+        type="button"
+        id="tab-dev"
+        role="tab"
+        aria-selected="true"
+        aria-controls="dev-stack"
+        class="stack-tab-btn px-3 py-1.5 rounded-md transition-all font-medium bg-background text-foreground shadow-xs border border-line cursor-pointer"
+        data-target="dev-stack"
+      >
+        Development
+      </button>
+      <button
+        type="button"
+        id="tab-design"
+        role="tab"
+        aria-selected="false"
+        aria-controls="design-stack"
+        class="stack-tab-btn px-3 py-1.5 rounded-md transition-all font-medium text-muted-foreground hover:text-foreground border border-transparent cursor-pointer"
+        data-target="design-stack"
+      >
+        Design & Creative
+      </button>
     </div>
   </div>
+
+  {/* Development Stack Panel */}
+  <div id="dev-stack" class="stack-panel flex flex-col divide-y divide-line" role="tabpanel" aria-labelledby="tab-dev">
+    {devSkillCategories.map((category) => (
+      <div class="flex flex-col sm:flex-row sm:items-stretch group hover:bg-muted/15 transition-colors">
+        {/* Left Column: Number & Category Title */}
+        <div class="w-full sm:w-48 md:w-56 shrink-0 p-4 sm:p-6 border-b sm:border-b-0 sm:border-r border-line flex items-center bg-muted/5 sm:bg-transparent">
+          <div class="flex items-center gap-2.5 text-sm sm:text-base font-medium text-muted-foreground">
+            <span class="text-xs text-muted-foreground/60 tabular-nums">{category.number}</span>
+            <span class="text-foreground">{category.name}</span>
+          </div>
+        </div>
+
+        {/* Right Column: Skill Badges */}
+        <div class="flex-1 p-4 sm:p-6 flex flex-wrap items-center gap-2 sm:gap-2.5">
+          {category.skills.map((skill) => {
+            const Icon = skill.iconComponent;
+            return (
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-line bg-muted/20 hover:bg-muted/60 text-foreground transition-all duration-200 group/pill">
+                <Icon className="w-4 h-4 text-muted-foreground group-hover/pill:text-foreground transition-colors shrink-0" />
+                <span class="text-xs sm:text-sm font-medium font-sans">{skill.name}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {/* Design & Creative Stack Panel */}
+  <div id="design-stack" class="stack-panel hidden flex-col divide-y divide-line" role="tabpanel" aria-labelledby="tab-design">
+    {designSkillCategories.map((category) => (
+      <div class="flex flex-col sm:flex-row sm:items-stretch group hover:bg-muted/15 transition-colors">
+        {/* Left Column: Number & Category Title */}
+        <div class="w-full sm:w-48 md:w-56 shrink-0 p-4 sm:p-6 border-b sm:border-b-0 sm:border-r border-line flex items-center bg-muted/5 sm:bg-transparent">
+          <div class="flex items-center gap-2.5 text-sm sm:text-base font-medium text-muted-foreground">
+            <span class="text-xs text-muted-foreground/60 tabular-nums">{category.number}</span>
+            <span class="text-foreground">{category.name}</span>
+          </div>
+        </div>
+
+        {/* Right Column: Skill Badges */}
+        <div class="flex-1 p-4 sm:p-6 flex flex-wrap items-center gap-2 sm:gap-2.5">
+          {category.skills.map((skill) => {
+            const Icon = skill.iconComponent;
+            return (
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-line bg-muted/20 hover:bg-muted/60 text-foreground transition-all duration-200 group/pill">
+                <Icon className="w-4 h-4 text-muted-foreground group-hover/pill:text-foreground transition-colors shrink-0" />
+                <span class="text-xs sm:text-sm font-medium font-sans">{skill.name}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <script>
+    function setupTechStackTabs() {
+      const tabBtns = document.querySelectorAll<HTMLButtonElement>('.stack-tab-btn');
+
+      tabBtns.forEach((btn) => {
+        const newBtn = btn.cloneNode(true) as HTMLButtonElement;
+        btn.parentNode?.replaceChild(newBtn, btn);
+
+        newBtn.addEventListener('click', () => {
+          const targetId = newBtn.getAttribute('data-target');
+          if (!targetId) return;
+
+          // Update active states on all tab buttons
+          document.querySelectorAll<HTMLButtonElement>('.stack-tab-btn').forEach((b) => {
+            const isActive = b.getAttribute('data-target') === targetId;
+            b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            if (isActive) {
+              b.classList.add('bg-background', 'text-foreground', 'shadow-xs', 'border-line');
+              b.classList.remove('text-muted-foreground', 'border-transparent');
+            } else {
+              b.classList.remove('bg-background', 'text-foreground', 'shadow-xs', 'border-line');
+              b.classList.add('text-muted-foreground', 'border-transparent');
+            }
+          });
+
+          // Show targeted panel, hide others
+          document.querySelectorAll<HTMLElement>('.stack-panel').forEach((panel) => {
+            if (panel.id === targetId) {
+              panel.classList.remove('hidden');
+              panel.classList.add('flex', 'animate-fade-in-up');
+            } else {
+              panel.classList.add('hidden');
+              panel.classList.remove('flex', 'animate-fade-in-up');
+            }
+          });
+        });
+      });
+    }
+
+    setupTechStackTabs();
+    document.addEventListener('astro:page-load', setupTechStackTabs);
+  </script>
 </div>
