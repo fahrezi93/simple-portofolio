@@ -89,9 +89,13 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
           {experience.companyLogo ? (
             <img
               src={experience.companyLogo}
-              alt={experience.companyName}
+              alt=""
+              width={24}
+              height={24}
+              loading="lazy"
+              decoding="async"
               className="size-6 rounded-full object-cover"
-              aria-hidden
+              aria-hidden="true"
             />
           ) : (
             <span className="flex size-2 rounded-full bg-zinc-300 dark:bg-zinc-600" />
@@ -116,10 +120,12 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
         {experience.isCurrentEmployer && (
           <span
             className="relative flex items-center justify-center"
+            role="status"
             aria-label="Current Employer"
           >
-            <span className="absolute inline-flex size-3 animate-ping rounded-full bg-sky-500 opacity-50" />
-            <span className="relative inline-flex size-2 rounded-full bg-sky-500" />
+            <span className="sr-only">Current Employer</span>
+            <span className="absolute inline-flex size-3 animate-ping rounded-full bg-sky-500 opacity-50" aria-hidden="true" />
+            <span className="relative inline-flex size-2 rounded-full bg-sky-500" aria-hidden="true" />
           </span>
         )}
       </div>

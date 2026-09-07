@@ -4,7 +4,7 @@ export const WORK_EXPERIENCE: ExperienceItemType[] = [
   {
     id: "kreativlabs",
     companyName: "KreativLabs.id",
-    companyLogo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeGTTDpDHKHM3gHkfqzpzsIM3_3WJjst7noOb2Zbf9BQ&s=10",
+    companyLogo: "/companies/kreativlabs.webp",
     companyWebsite: "https://kreativlabs.id",
     isCurrentEmployer: true,
     positions: [
@@ -26,7 +26,7 @@ export const WORK_EXPERIENCE: ExperienceItemType[] = [
   {
     id: "tiga-rasa-gemilang",
     companyName: "PT Tiga Rasa Gemilang",
-    companyLogo: "/logo%20gemilang%20group.png",
+    companyLogo: "/companies/tiga-rasa-gemilang.webp",
     isCurrentEmployer: true,
     positions: [
       {
@@ -48,7 +48,7 @@ export const WORK_EXPERIENCE: ExperienceItemType[] = [
     id: "bangkit-academy",
     companyName: "Bangkit Academy led by Google, GoTo, and Traveloka",
     companyWebsite: "https://grow.google/intl/id_id/bangkit",
-    companyLogo: "https://files.klob.id/public/mig01/l32ovhf5/channels4_profile.jpg",
+    companyLogo: "/companies/bangkit.webp",
     positions: [
       {
         id: "bangkit-cloud",
@@ -69,7 +69,7 @@ export const WORK_EXPERIENCE: ExperienceItemType[] = [
   {
     id: "gdg-unsri",
     companyName: "Google Developer Group UNSRI",
-    companyLogo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3fe7Z59eu-SUnCZHOSug8279-OIehCuBnuWQ90C9YleJq3yTdNrHlH5YH&s=10",
+    companyLogo: "/companies/gdg-unsri.webp",
     companyWebsite: "https://gdg.community.dev/gdg-on-campus-universitas-sriwijaya-palembang-indonesia/",
     positions: [
       {
@@ -91,7 +91,7 @@ export const WORK_EXPERIENCE: ExperienceItemType[] = [
   {
     id: "hmif-unsri",
     companyName: "HMIF UNSRI",
-    companyLogo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnb_Gfji2yHF3B5zeW_3B6aFkMeSRLFfVAJ_t2WZMlvvduLgFhHoSni_ve&s=10",
+    companyLogo: "/companies/hmif-unsri.webp",
     companyWebsite: "https://www.hmifunsri.com",
     positions: [
       {
@@ -127,7 +127,7 @@ export const WORK_EXPERIENCE: ExperienceItemType[] = [
     id: "fasco-unsri",
     companyName: "FASCO UNSRI",
     companyWebsite: "https://www.instagram.com/fascounsri/",
-    companyLogo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb4kJJLIK5IhUsy4Z9PTBBnhlM62UTQbugti3QG5C5-wCTv0nteWxusHk&s=10",
+    companyLogo: "/companies/fasco-unsri.webp",
     positions: [
       {
         id: "fasco-multimedia",
@@ -147,7 +147,7 @@ export const WORK_EXPERIENCE: ExperienceItemType[] = [
   {
     id: "wifi-unsri",
     companyName: "WIFI UNSRI",
-    companyLogo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS6EraR5xqpkajRtFv9ufAgGHCApSccwqO0EWJ8ghfVSQr-1xCcswX1erA&s=10",
+    companyLogo: "/companies/wifi-unsri.webp",
     companyWebsite: "https://www.instagram.com/wifi_fasilkom",
     positions: [
       {

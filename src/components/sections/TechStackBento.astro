@@ -63,7 +63,7 @@ import { devSkillCategories, designSkillCategories } from "../../data/skills";
             const Icon = skill.iconComponent;
             return (
               <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-line bg-muted/20 hover:bg-muted/60 text-foreground transition-all duration-200 group/pill">
-                <Icon className="w-4 h-4 text-muted-foreground group-hover/pill:text-foreground transition-colors shrink-0" />
+                <Icon className="w-4 h-4 text-muted-foreground group-hover/pill:text-foreground transition-colors shrink-0" aria-hidden="true" />
                 <span class="text-xs sm:text-sm font-medium font-sans">{skill.name}</span>
               </div>
             );
@@ -91,7 +91,7 @@ import { devSkillCategories, designSkillCategories } from "../../data/skills";
             const Icon = skill.iconComponent;
             return (
               <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-line bg-muted/20 hover:bg-muted/60 text-foreground transition-all duration-200 group/pill">
-                <Icon className="w-4 h-4 text-muted-foreground group-hover/pill:text-foreground transition-colors shrink-0" />
+                <Icon className="w-4 h-4 text-muted-foreground group-hover/pill:text-foreground transition-colors shrink-0" aria-hidden="true" />
                 <span class="text-xs sm:text-sm font-medium font-sans">{skill.name}</span>
               </div>
             );
