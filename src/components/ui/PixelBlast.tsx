@@ -8,6 +8,7 @@ interface PixelBlastProps {
   speed?: number;
   opacity?: number;
   color?: string;
+  dotSize?: number;
 }
 
 const VERTEX_SHADER = `
@@ -48,8 +49,8 @@ void main() {
   vec2 cellUv = fract(gl_FragCoord.xy / uPixelSize);
   vec2 uv = cell * uPixelSize / uResolution;
 
-  // Organic simplex-like noise field drift
-  float field = noise(uv * uScale * 10.0 + vec2(uTime * 0.06, -uTime * 0.04));
+  // Organic simplex-like noise field drift (graceful, visible floating motion)
+  float field = noise(uv * uScale * 10.0 + vec2(uTime * 0.12, -uTime * 0.08));
   
   // Creates organic cloud clusters with empty spaces around them
   float density = smoothstep(0.34, 0.72, field) * uDensity;
@@ -75,6 +76,7 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
   speed = 0.35,
   opacity,
   color,
+  dotSize,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -184,10 +186,13 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
 
     const getOpacity = () => {
       if (opacity !== undefined) return opacity;
-      return isDarkMode() ? 0.38 : 0.48;
+      return isDarkMode() ? 0.35 : 0.42;
     };
 
-    const getDotSize = () => (isDarkMode() ? 0.18 : 0.22);
+    const getDotSize = () => {
+      if (dotSize !== undefined) return dotSize;
+      return isDarkMode() ? 0.18 : 0.22;
+    };
 
     let curColor = getColors();
     let curOpacity = getOpacity();
@@ -222,9 +227,7 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
 
       gl.drawArrays(gl.TRIANGLES, 0, 6);
 
-      if (!prefersReducedMotion) {
-        animId = requestAnimationFrame(render);
-      }
+      animId = requestAnimationFrame(render);
     };
 
     const handleResize = () => {
@@ -253,7 +256,7 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
 
     const intersectionObserver = new IntersectionObserver(([entry]) => {
       isVisible = entry?.isIntersecting ?? false;
-      if (isVisible && !prefersReducedMotion && !animId) {
+      if (isVisible && !animId) {
         lastTime = performance.now();
         animId = requestAnimationFrame(render);
       } else if (!isVisible && animId) {
@@ -275,9 +278,7 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
     });
 
     handleResize();
-    if (!prefersReducedMotion) {
-      animId = requestAnimationFrame(render);
-    }
+    animId = requestAnimationFrame(render);
 
     return () => {
       if (animId) cancelAnimationFrame(animId);
@@ -289,7 +290,7 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
       gl.deleteShader(fs);
       gl.deleteProgram(program);
     };
-  }, [pixelSize, patternScale, patternDensity, speed, opacity, color]);
+  }, [pixelSize, patternScale, patternDensity, speed, opacity, color, dotSize]);
 
   return (
     <div

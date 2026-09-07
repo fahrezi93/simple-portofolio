@@ -1,12 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion, LayoutGroup } from "motion/react";
 import { CommandPalette } from "./CommandPalette";
-import { Button } from "@/components/ui/button";
 import { Sun, Moon } from "lucide-react";
+
+interface NavItem {
+  id: string;
+  label: string;
+}
+
+const NAV_ITEMS: NavItem[] = [
+  { id: "about", label: "About" },
+  { id: "projects", label: "Projects" },
+  { id: "experience", label: "Experience" },
+  { id: "contact", label: "Contact" },
+];
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [activeSection, setActiveSection] = useState<string>("");
+  const isManualScrollRef = useRef(false);
+  const manualScrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     // Check initial theme on mount
@@ -40,14 +55,56 @@ export function Navigation() {
     document.startViewTransition(switchTheme);
   };
 
+  // ScrollSpy to track active section dynamically
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
+
+      if (isManualScrollRef.current) return;
+
+      // If at top / hero, clear active section
+      if (window.scrollY < 200) {
+        setActiveSection("");
+        return;
+      }
+
+      // Check bottom of page
+      const scrollBottom = window.innerHeight + window.scrollY;
+      const docHeight = document.documentElement.scrollHeight;
+      if (scrollBottom >= docHeight - 60) {
+        setActiveSection("contact");
+        return;
+      }
+
+      // Determine active section using comfortable trigger line (38% of viewport)
+      const triggerLine = window.scrollY + window.innerHeight * 0.38;
+      let current = "";
+
+      for (const item of NAV_ITEMS) {
+        const el = document.getElementById(item.id);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY;
+          if (top <= triggerLine) {
+            current = item.id;
+          }
+        }
+      }
+
+      if (current) {
+        setActiveSection(current);
+      }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (manualScrollTimeoutRef.current) clearTimeout(manualScrollTimeoutRef.current);
+    };
   }, []);
 
+  // Keyboard shortcut for command palette
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
@@ -59,6 +116,62 @@ export function Navigation() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
+  // Smart smooth scrolling: centers short sections (like About) or offsets tall ones nicely below fixed navbar
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    const navHeight = 64; // Header height
+    const rect = element.getBoundingClientRect();
+    const elementTop = rect.top + window.scrollY;
+    const elementHeight = element.offsetHeight;
+    const windowHeight = window.innerHeight;
+
+    // Available height beneath fixed navbar
+    const visibleSpace = windowHeight - navHeight;
+
+    let targetY: number;
+
+    // If section fits comfortably within the screen (like About),
+    // CENTER IT vertically in the viewport so it feels comfortable and balanced!
+    if (elementHeight < visibleSpace) {
+      const verticalPadding = (visibleSpace - elementHeight) / 2;
+      targetY = elementTop - navHeight - verticalPadding;
+    } else {
+      // If section is taller than screen (like Projects or Experience),
+      // position its header comfortably below the fixed navbar with 28px breathing room
+      targetY = elementTop - navHeight - 28;
+    }
+
+    setActiveSection(id);
+    isManualScrollRef.current = true;
+    if (manualScrollTimeoutRef.current) clearTimeout(manualScrollTimeoutRef.current);
+    manualScrollTimeoutRef.current = setTimeout(() => {
+      isManualScrollRef.current = false;
+    }, 850);
+
+    window.scrollTo({
+      top: Math.max(0, Math.round(targetY)),
+      behavior: "smooth",
+    });
+
+    window.history.pushState(null, "", `#${id}`);
+  };
+
+  const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    isManualScrollRef.current = true;
+    setActiveSection("");
+    if (manualScrollTimeoutRef.current) clearTimeout(manualScrollTimeoutRef.current);
+    manualScrollTimeoutRef.current = setTimeout(() => {
+      isManualScrollRef.current = false;
+    }, 850);
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.history.pushState(null, "", " ");
+  };
+
   return (
     <>
       <header
@@ -69,16 +182,54 @@ export function Navigation() {
         }`}
       >
         <div className="mx-auto w-full md:max-w-3xl px-6 h-16 flex items-center justify-between border-x border-line">
-          <a href="#" className="font-bold text-lg tracking-tight">
+          <a
+            href="#"
+            onClick={scrollToTop}
+            className="font-bold text-lg tracking-tight hover:opacity-80 transition-opacity cursor-pointer"
+          >
             Fahrezi.
           </a>
           
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
-            <a href="#about" className="hover:text-foreground transition-colors">About</a>
-            <a href="#experience" className="hover:text-foreground transition-colors">Experience</a>
-            <a href="#projects" className="hover:text-foreground transition-colors">Projects</a>
-            <a href="#contact" className="hover:text-foreground transition-colors">Contact</a>
-            <a href="/CV%20Mohammad%20Fahrezi%20Dev.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Resume</a>
+          <nav className="hidden md:flex items-center gap-1 text-sm font-medium">
+            <LayoutGroup id="navbar-nav">
+              {NAV_ITEMS.map((item) => {
+                const isActive = activeSection === item.id;
+                return (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    onClick={(e) => scrollToSection(e, item.id)}
+                    className={`relative px-3 py-2 text-sm transition-colors duration-200 cursor-pointer ${
+                      isActive
+                        ? "text-foreground font-semibold"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    <span className="relative z-10">{item.label}</span>
+                    {isActive && (
+                      <motion.span
+                        layoutId="navbar-active-bar"
+                        className="absolute bottom-0 left-2 right-2 h-0.5 bg-foreground rounded-full"
+                        transition={{
+                          type: "spring",
+                          stiffness: 420,
+                          damping: 32,
+                        }}
+                      />
+                    )}
+                  </a>
+                );
+              })}
+            </LayoutGroup>
+
+            <a
+              href="/CV%20Mohammad%20Fahrezi%20Dev.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            >
+              Resume
+            </a>
           </nav>
 
           <div className="flex items-center gap-2">
@@ -101,3 +252,4 @@ export function Navigation() {
     </>
   );
 }
+
