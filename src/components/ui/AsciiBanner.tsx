@@ -288,6 +288,8 @@ export const AsciiBanner: React.FC<AsciiBannerProps> = ({
         alt={alt}
         className="w-full h-full object-cover object-[center_40%]"
         loading="eager"
+        fetchPriority="high"
+        decoding="async"
       />
       <canvas
         ref={canvasRef}

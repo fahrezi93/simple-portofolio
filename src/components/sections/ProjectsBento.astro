@@ -85,8 +85,11 @@ const projects = (success && dbProjects && dbProjects.length > 0)
     ))}
   </div>
 
-  <ProjectModal client:load />
-  <ProjectHoverPreview client:load />
+  <ProjectModal client:idle />
+  <ProjectHoverPreview
+    client:media="(hover: hover) and (pointer: fine)"
+    images={projects.map((p) => p.image_url || (p as any).image).filter(Boolean)}
+  />
 
   <script>
     function setupProjectCards() {

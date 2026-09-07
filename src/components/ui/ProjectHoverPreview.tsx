@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "motion/react";
 
@@ -8,10 +8,16 @@ interface HoveredProject {
   category?: string;
 }
 
-export function ProjectHoverPreview() {
+interface ProjectHoverPreviewProps {
+  images?: string[];
+}
+
+export function ProjectHoverPreview({ images = [] }: ProjectHoverPreviewProps) {
   const [mounted, setMounted] = useState(false);
   const [activeProject, setActiveProject] = useState<HoveredProject | null>(null);
   const [isHoverDevice, setIsHoverDevice] = useState(false);
+  const [cachedUrls, setCachedUrls] = useState<string[]>([]);
+  const preloadedRef = useRef<Set<string>>(new Set());
 
   // Raw mouse coordinates
   const mouseX = useMotionValue(0);
@@ -22,6 +28,69 @@ export function ProjectHoverPreview() {
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
+  // 1. Just-In-Time preloader: warms up cache when user approaches the projects section
+  useEffect(() => {
+    let hasPreloaded = false;
+
+    const startPreload = () => {
+      if (hasPreloaded) return;
+      hasPreloaded = true;
+
+      const urlsToPreload = new Set<string>(images.filter(Boolean));
+      const domCards = document.querySelectorAll(".project-card");
+      domCards.forEach((card) => {
+        const url = card.getAttribute("data-preview-image");
+        if (url) urlsToPreload.add(url);
+      });
+
+      const uniqueList = Array.from(urlsToPreload);
+      setCachedUrls(uniqueList);
+
+      uniqueList.forEach((url) => {
+        if (!preloadedRef.current.has(url)) {
+          preloadedRef.current.add(url);
+          const img = new window.Image();
+          img.decoding = "async";
+          img.src = url;
+        }
+      });
+    };
+
+    const projectsSection = document.getElementById("projects");
+    if (projectsSection) {
+      projectsSection.addEventListener("mouseenter", startPreload, { once: true, passive: true });
+    }
+
+    if ("IntersectionObserver" in window && projectsSection) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            startPreload();
+            observer.disconnect();
+          }
+        },
+        { rootMargin: "400px 0px" }
+      );
+      observer.observe(projectsSection);
+
+      return () => {
+        observer.disconnect();
+        if (projectsSection) {
+          projectsSection.removeEventListener("mouseenter", startPreload);
+        }
+      };
+    } else {
+      // Fallback on idle
+      if ("requestIdleCallback" in window) {
+        (window as any).requestIdleCallback(startPreload);
+      } else {
+        const timeout = setTimeout(startPreload, 2000);
+        return () => clearTimeout(timeout);
+      }
+    }
+  }, [images]);
+
+  // 2. Mouse tracking & card detection
   useEffect(() => {
     setMounted(true);
     const hasHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -32,8 +101,6 @@ export function ProjectHoverPreview() {
     let currentCard: HTMLElement | null = null;
 
     const handleMouseMove = (e: MouseEvent) => {
-      // Offset slightly from cursor (20px right, 20px bottom)
-      // Check if near right screen edge to avoid clipping
       const previewWidth = 280;
       const previewHeight = 180;
       const margin = 24;
@@ -90,40 +157,63 @@ export function ProjectHoverPreview() {
   if (!mounted || !isHoverDevice) return null;
 
   return createPortal(
-    <AnimatePresence>
-      {activeProject && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.88, filter: "blur(4px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-          exit={{ opacity: 0, scale: 0.88, filter: "blur(4px)", transition: { duration: 0.15 } }}
-          transition={{ type: "spring", stiffness: 350, damping: 25 }}
-          style={{
-            x: smoothX,
-            y: smoothY,
-          }}
-          className="pointer-events-none fixed left-0 top-0 z-50 w-72 select-none overflow-hidden rounded-xl border border-line/80 bg-card/90 p-1.5 shadow-2xl backdrop-blur-md dark:border-line/60 dark:shadow-black/70"
-        >
-          <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted/80">
-            <img
-              src={activeProject.image}
-              alt={activeProject.title}
-              className="h-full w-full object-cover object-top transition-transform duration-500"
-              loading="eager"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-          </div>
+    <>
+      {/* Hidden pre-rendered images to force GPU memory caching and decoding */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed -top-[9999px] -left-[9999px] h-0 w-0 overflow-hidden opacity-0"
+      >
+        {cachedUrls.map((url) => (
+          <img
+            key={url}
+            src={url}
+            alt=""
+            loading="eager"
+            decoding="async"
+            fetchPriority="low"
+          />
+        ))}
+      </div>
 
-          <div className="flex items-center justify-between px-2 py-1.5">
-            <span className="truncate text-xs font-semibold tracking-tight text-foreground">
-              {activeProject.title}
-            </span>
-            <span className="text-[10px] text-muted-foreground font-mono shrink-0 ml-2">
-              Preview ↗
-            </span>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>,
+      <AnimatePresence>
+        {activeProject && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, filter: "blur(4px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 0.9, filter: "blur(4px)", transition: { duration: 0.15 } }}
+            transition={{ type: "spring", stiffness: 380, damping: 26 }}
+            style={{
+              x: smoothX,
+              y: smoothY,
+            }}
+            className="pointer-events-none fixed left-0 top-0 z-50 w-72 select-none overflow-hidden rounded-xl border border-line/80 bg-card/95 p-1.5 shadow-2xl backdrop-blur-md dark:border-line/60 dark:shadow-black/70"
+          >
+            <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted/80">
+              <img
+                key={activeProject.image}
+                src={activeProject.image}
+                alt={activeProject.title}
+                className="h-full w-full object-cover object-top transition-transform duration-500"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+            </div>
+
+            <div className="flex items-center justify-between px-2 py-1.5">
+              <span className="truncate text-xs font-semibold tracking-tight text-foreground">
+                {activeProject.title}
+              </span>
+              <span className="text-[10px] text-muted-foreground font-mono shrink-0 ml-2">
+                Preview ↗
+              </span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>,
     document.body
   );
 }
+
