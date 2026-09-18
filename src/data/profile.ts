@@ -9,7 +9,7 @@ export const profile = {
   linkedin: "https://linkedin.com/in/mohammad-fahrezi",
   instagram: "https://instagram.com/moh.fahrezi",
   discord: "https://discord.com/users/1058224849161572397",
-  twitter: "https://twitter.com/fahrrrezi",
+  googleDev: "https://g.dev/fahrezi",
   whatsapp: "https://wa.me/6285872381791",
   resume: "/CV%20Mohammad%20Fahrezi%20Dev.pdf",
 };

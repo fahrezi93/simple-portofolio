@@ -23,9 +23,9 @@ export function ContactForm() {
 
     try {
       await emailjs.send(
-        'fahrezi_email', 
-        'template_w86l3fj', 
-        data, 
+        'fahrezi_email',
+        'template_w86l3fj',
+        data,
         'KhbqXgjDEduLsAKJW'
       );
       setStatus('success');
@@ -43,33 +43,33 @@ export function ContactForm() {
       <div className="space-y-4">
         <div className="space-y-2">
           <label htmlFor="name" className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Name</label>
-          <Input 
+          <Input
             id="name"
             name="name"
-            required 
-            placeholder="John Doe"
+            required
+            placeholder="Your Name"
             className="bg-muted/30 border-line"
           />
         </div>
-        
+
         <div className="space-y-2">
           <label htmlFor="email" className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Email</label>
-          <Input 
+          <Input
             id="email"
             name="email"
             type="email"
-            required 
-            placeholder="john@example.com"
+            required
+            placeholder="youremail@example.com"
             className="bg-muted/30 border-line"
           />
         </div>
 
         <div className="space-y-2">
           <label htmlFor="message" className="text-xs font-medium tracking-widest text-muted-foreground uppercase">Message</label>
-          <Textarea 
+          <Textarea
             id="message"
             name="message"
-            required 
+            required
             placeholder="How can I help you?"
             className="bg-muted/30 border-line min-h-[120px] resize-none"
           />
