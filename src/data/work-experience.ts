@@ -2,6 +2,31 @@ import type { ExperienceItemType } from "@/components/work-experience"
 
 export const WORK_EXPERIENCE: ExperienceItemType[] = [
   {
+    id: "",
+    companyName: "Badan Standarisasi Nasional",
+    companyLogo: "https://media.licdn.com/dms/image/v2/C4D0BAQG4bJWAqtxe9Q/company-logo_200_200/company-logo_200_200/0/1630484505567/national_standardization_agency_of_indonesia_logo?e=2147483647&v=beta&t=xLP85Tr5muK7Q-WfCFbWGRZ0aKjEWII_ZszEbPtqM38",
+    companyWebsite: "https://bsn.go.id/",
+    isCurrentEmployer: true,
+    positions: [
+      {
+        id: "bsn",
+        title: "Application Developer",
+        employmentPeriod: {
+          start: "09.2026",
+          end: "",
+        },
+        employmentType: "Apprenticeship",
+        description: `- Building and maintaining web applications for internal users and external clients.
+- Collaborating with design teams to implement user-friendly interfaces and improve user experience.
+- Working with backend developers to integrate APIs and ensure seamless data flow.
+        `,
+        skills: ["Web Development", "Laravel", "Tailwind CSS", "MySQL", "Agile Development"],
+        isExpanded: true,
+      },
+    ],
+  },
+
+  {
     id: "kreativlabs",
     companyName: "KreativLabs.id",
     companyLogo: "/companies/kreativlabs.webp",
@@ -15,10 +40,11 @@ export const WORK_EXPERIENCE: ExperienceItemType[] = [
           start: "11.2025",
         },
         employmentType: "Freelance / Co-founder",
-        description: `- Providing professional website development and graphic design services for clients.
-- Building modern, responsive web applications using Next.js, React, TypeScript, and Tailwind CSS.
-- Designing clean interfaces, wireframes, and design systems in Figma.`,
-        skills: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Figma", "Graphic Design"],
+        description: `- Developed a comprehensive internal management system for a Certification Body (LS ISPO) to digitize and automate the end-to-end certification workflow.
+- Engineered automated document processing to dynamically generate client certificates and embed government-issued QR codes, streamlining administrative tasks.
+- Designed an API-ready architecture within Laravel to ensure seamless future data synchronization with national accreditation portals (SIAP ISPO and Kanmis).
+- Implemented robust data validation and SLA tracking features to maintain system compliance with strict KAN K-08.08 accreditation standards.`,
+        skills: ["Laravel", "PHP", "MySQL", "API Architecture", "Workflow Automation", "Document Generation"],
         isExpanded: true,
       },
     ],
