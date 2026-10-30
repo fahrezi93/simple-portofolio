@@ -3,7 +3,7 @@ export const profile = {
   role: "Software Engineer",
   tagline: "Building clean, functional, and user-friendly web applications.",
   bio: "A Computer Science graduate from Sriwijaya University with practical experience in frontend and full-stack development. I work regularly with React, Next.js, TypeScript, and Tailwind CSS, while also designing interfaces in Figma and connecting backend services with Python, Node.js, and cloud tools. I enjoy taking ideas from concept to working products that people can actually use.",
-  email: "hello@fahrezi.tech",
+  email: "hello@mohfahrezi.dev",
   location: "Indonesia",
   github: "https://github.com/fahrezi93",
   linkedin: "https://linkedin.com/in/mohammad-fahrezi",

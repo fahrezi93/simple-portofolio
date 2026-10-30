@@ -19,6 +19,6 @@ Aturan redirect ini berlaku jika domain terhubung ke deployment Vercel yang mema
 3. Setelah redirect aktif, gunakan Change of Address pada properti domain lama yang sesuai. Pertahankan redirect setidaknya satu tahun.
 4. Perbarui tautan portfolio pada GitHub, LinkedIn, CV, dan profil publik lainnya.
 
-Alamat email `hello@fahrezi.tech` tetap digunakan; kepemilikan domain website baru tidak otomatis membuat mailbox baru.
+Alamat kontak website dan metadata: `hello@mohfahrezi.dev`. Pastikan mailbox atau forwarding alamat tersebut aktif pada penyedia email. Jika menggunakan formulir EmailJS, periksa alamat penerima di template EmailJS; alamat itu dikelola terpisah dari `profile.email` pada website.
 
 Referensi: https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes
