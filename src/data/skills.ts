@@ -93,9 +93,9 @@ export const devSkillCategories: SkillCategory[] = [
 
 export const designSkillCategories: SkillCategory[] = [
   {
-    id: "ui-ux",
+    id: "design-tools",
     number: "01",
-    name: "UI / UX Design",
+    name: "Design Tools",
     skills: [
       { name: "Figma", iconComponent: SiFigma },
       { name: "Canva", iconComponent: SiCanva },

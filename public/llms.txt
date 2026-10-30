@@ -2,23 +2,23 @@
 
 > Developer & Designer Portfolio — Crafting immersive digital experiences.
 
-Mohammad Fahrezi is a passionate Computer Science fresh graduate from Sriwijaya University (UNSRI), Indonesia, specializing in Front-End Web Development, Full-Stack Web Applications, UI/UX Design, and Graphic Design.
+Mohammad Fahrezi is a passionate Computer Science fresh graduate from Sriwijaya University (UNSRI), Indonesia, specializing in Front-End Web Development, Full-Stack Web Applications, and Graphic Design.
 
 ## Summary & Education
 - **Full Name**: Mohammad Fahrezi
 - **Education**: Bachelor of Computer Science (Fresh Graduate), Universitas Sriwijaya (UNSRI)
-- **Role**: Front-End Developer, Web Developer, Graphic & UI/UX Designer
+- **Role**: Software Engineer, Front-End Developer, Web Developer, Graphic Designer
 - **Location**: Indonesia (Available for Remote Work)
 - **Email**: hello@fahrezi.tech
-- **Website**: https://dev.fahrezi.tech
+- **Website**: https://mohfahrezi.dev
 - **GitHub**: https://github.com/fahrezi93
 - **LinkedIn**: https://linkedin.com/in/mohammad-fahrezi
 
 ## Technical Skills & Tech Stack
 - **Frontend Development**: React, Next.js, Astro, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS
-- **Backend & Cloud**: Node.js, Python, Flask, Firebase, Supabase, PostgreSQL, Google Cloud Platform (GCP)
+- **Backend & Cloud**: Laravel, PHP, MySQL, SQL Server, Node.js, Python, Flask, Firebase, Supabase, PostgreSQL, Google Cloud Platform (GCP)
 - **AI & Machine Learning**: TensorFlow, Keras, OpenCV, Genkit AI, Natural Language Processing (NLP)
-- **Design & Multimedia**: Figma (UI/UX), Adobe Photoshop, Adobe Premiere Pro, Adobe After Effects, Canva, CapCut
+- **Design & Multimedia**: Figma, Adobe Photoshop, Adobe Premiere Pro, Adobe After Effects, Canva, CapCut
 
 ## Featured Projects
 - **Chatbot AI (Aksara AI)**: Intelligent conversational AI with natural language processing built with Python, Flask, Firebase, and JavaScript. (https://aksara-ai.vercel.app)
@@ -29,6 +29,7 @@ Mohammad Fahrezi is a passionate Computer Science fresh graduate from Sriwijaya 
 - **Smart Attendance**: Face-recognition attendance marking system built with Python, OpenCV, Flask, and React.
 
 ## Experience & Leadership
+- **Application Developer (Apprenticeship)** at BSN (Sep 2026 - Present)
 - **Graphic Designer** at PT Tiga Rasa Gemilang (Feb 2026 - Present)
 - **Website & Design Services** at KreativLabs.id (Nov 2025 - Present)
 - **Cloud Computing Cohort** at Bangkit Academy led by Google, Tokopedia, GoTo, Traveloka (Sep 2024 - Dec 2024)

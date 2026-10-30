@@ -20,7 +20,7 @@ export const WORK_EXPERIENCE: ExperienceItemType[] = [
 - Collaborating with design teams to implement user-friendly interfaces and improve user experience.
 - Working with backend developers to integrate APIs and ensure seamless data flow.
         `,
-        skills: ["Web Development", "Laravel", "Tailwind CSS", "MySQL", "Agile Development"],
+        skills: ["Web Development","PHP","SQL Server", "Laravel", "MySQL"],
         isExpanded: true,
       },
     ],

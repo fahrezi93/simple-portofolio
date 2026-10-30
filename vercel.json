@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "dev.fahrezi.tech" }],
+      "destination": "https://mohfahrezi.dev/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.mohfahrezi.dev" }],
+      "destination": "https://mohfahrezi.dev/:path*",
+      "permanent": true
+    }
+  ]
+}

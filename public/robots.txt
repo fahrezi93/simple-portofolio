@@ -29,4 +29,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://dev.fahrezi.tech/sitemap.xml
+Sitemap: https://mohfahrezi.dev/sitemap.xml

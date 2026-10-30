@@ -157,20 +157,31 @@
 
 }
 
-/* Smooth Hardware-Accelerated @ncdai Circle Effect */
-::view-transition-group(root) {
-  animation-timing-function: var(--expo-out);
+/* The snapshot reveal replaces individual color transitions during a theme change. */
+html[data-theme-transition] *,
+html[data-theme-transition] *::before,
+html[data-theme-transition] *::after {
+  transition: none !important;
 }
 
-::view-transition-old(root),
-.dark::view-transition-old(root) {
+::view-transition-group(root) {
   animation: none;
-  animation-fill-mode: both;
-  z-index: -1;
+}
+
+::view-transition-image-pair(root) {
+  isolation: isolate;
+}
+
+::view-transition-old(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  z-index: 1;
 }
 
 ::view-transition-new(root) {
   animation: circle-scale 0.7s var(--expo-out) both;
+  mix-blend-mode: normal;
+  z-index: 2;
 }
 
 @keyframes circle-scale {
@@ -178,7 +189,7 @@
     clip-path: circle(0% at center);
   }
   to {
-    clip-path: circle(150vmax at center);
+    clip-path: circle(var(--theme-reveal-radius, 100vmax) at center);
   }
 }
 

@@ -5,7 +5,6 @@ const WORDS = [
   "Software Engineer",
   "Full-Stack Developer",
   "AI Engineer",
-  "UI/UX Designer",
   "Cloud Engineer"
 ];
 

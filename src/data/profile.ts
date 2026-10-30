@@ -1,6 +1,6 @@
 export const profile = {
   name: "Mohammad Fahrezi",
-  role: "Software Engineer & UI/UX Designer",
+  role: "Software Engineer",
   tagline: "Building clean, functional, and user-friendly web applications.",
   bio: "A Computer Science graduate from Sriwijaya University with practical experience in frontend and full-stack development. I work regularly with React, Next.js, TypeScript, and Tailwind CSS, while also designing interfaces in Figma and connecting backend services with Python, Node.js, and cloud tools. I enjoy taking ideas from concept to working products that people can actually use.",
   email: "hello@fahrezi.tech",
@@ -47,7 +47,7 @@ export const experience = [
     role: "Website & Design Services",
     company: "KreativLabs.id",
     period: "Nov 2025 - Present",
-    description: "Providing professional website development and design services for clients. Creating modern, responsive, and user-friendly web applications tailored to client needs. Delivering comprehensive design solutions including UI/UX design and branding materials."
+    description: "Providing professional website development and design services for clients. Creating modern, responsive, and user-friendly web applications tailored to client needs. Delivering comprehensive design solutions including graphic design and branding materials."
   },
   {
     role: "Head of Multimedia Division",

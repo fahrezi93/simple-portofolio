@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { flushSync } from "react-dom";
 import { motion, LayoutGroup } from "motion/react";
 import { CommandPalette } from "./CommandPalette";
 import { Sun, Moon } from "lucide-react";
@@ -22,6 +23,7 @@ export function Navigation() {
   const [activeSection, setActiveSection] = useState<string>("");
   const isManualScrollRef = useRef(false);
   const manualScrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const themeTransitionRef = useRef(false);
 
   useEffect(() => {
     // Check initial theme on mount
@@ -29,8 +31,11 @@ export function Navigation() {
     setTheme(isDark ? "dark" : "light");
   }, []);
 
-  const toggleTheme = () => {
-    const isDark = theme === "dark";
+  const toggleTheme = async () => {
+    if (themeTransitionRef.current) return;
+
+    const root = document.documentElement;
+    const isDark = root.classList.contains("dark");
     const newTheme = isDark ? "light" : "dark";
 
     const switchTheme = () => {
@@ -52,7 +57,28 @@ export function Navigation() {
       return;
     }
 
-    document.startViewTransition(switchTheme);
+    themeTransitionRef.current = true;
+    root.style.setProperty(
+      "--theme-reveal-radius",
+      `${Math.ceil(Math.hypot(window.innerWidth, window.innerHeight) / 2)}px`,
+    );
+    root.setAttribute("data-theme-transition", "");
+
+    try {
+      const transition = document.startViewTransition(() => {
+        flushSync(switchTheme);
+      });
+      await transition.finished;
+    } catch {
+      // A skipped transition must still leave the requested theme applied.
+      if (root.classList.contains("dark") !== (newTheme === "dark")) {
+        switchTheme();
+      }
+    } finally {
+      root.removeAttribute("data-theme-transition");
+      root.style.removeProperty("--theme-reveal-radius");
+      themeTransitionRef.current = false;
+    }
   };
 
   // ScrollSpy to track active section dynamically
