@@ -16,11 +16,11 @@ export const WORK_EXPERIENCE: ExperienceItemType[] = [
           end: "",
         },
         employmentType: "Apprenticeship",
-        description: `- Building and maintaining web applications for internal users and external clients.
-- Collaborating with design teams to implement user-friendly interfaces and improve user experience.
-- Working with backend developers to integrate APIs and ensure seamless data flow.
-        `,
-        skills: ["Web Development","PHP","SQL Server", "Laravel", "MySQL"],
+        description: `- Developed a comprehensive internal management system for a Certification Body (LS ISPO) to digitize and automate the end-to-end certification workflow.
+- Engineered automated document processing to dynamically generate client certificates and embed government-issued QR codes, streamlining administrative tasks.
+- Designed an API-ready architecture within Laravel to ensure seamless future data synchronization with national accreditation portals (SIAP ISPO and Kanmis).
+- Implemented robust data validation and SLA tracking features to maintain system compliance with strict KAN K-08.08 accreditation standards.`,
+        skills: ["Laravel", "PHP", "MySQL", "API Architecture", "Workflow Automation", "Document Generation"],
         isExpanded: true,
       },
     ],
@@ -40,11 +40,11 @@ export const WORK_EXPERIENCE: ExperienceItemType[] = [
           start: "11.2025",
         },
         employmentType: "Freelance / Co-founder",
-        description: `- Developed a comprehensive internal management system for a Certification Body (LS ISPO) to digitize and automate the end-to-end certification workflow.
-- Engineered automated document processing to dynamically generate client certificates and embed government-issued QR codes, streamlining administrative tasks.
-- Designed an API-ready architecture within Laravel to ensure seamless future data synchronization with national accreditation portals (SIAP ISPO and Kanmis).
-- Implemented robust data validation and SLA tracking features to maintain system compliance with strict KAN K-08.08 accreditation standards.`,
-        skills: ["Laravel", "PHP", "MySQL", "API Architecture", "Workflow Automation", "Document Generation"],
+        description: `- Building and maintaining web applications for internal users and external clients.
+- Collaborating with design teams to implement user-friendly interfaces and improve user experience.
+- Working with backend developers to integrate APIs and ensure seamless data flow.
+        `,
+        skills: ["Web Development","PHP","SQL Server", "Laravel", "MySQL"],
         isExpanded: true,
       },
     ],
